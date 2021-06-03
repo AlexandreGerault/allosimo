@@ -34,9 +34,4 @@ class UserFactory extends Factory
             }
         );
     }
-
-    public function role(string $role): UserFactory
-    {
-        return $this->state(['role' => $role]);
-    }
 }
