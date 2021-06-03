@@ -1,11 +1,17 @@
 <x-app-layout>
+    <x-slot name="title">
+        Ajouter un restaurant
+    </x-slot>
+
     <x-slot name="header">
         Ajouter un restaurant
     </x-slot>
 
     <x-dashboard-section>
+        <x-validation-errors class="mb-4" :errors="$errors"/>
 
-        <form class="flex flex-col gap-4">
+        <form class="flex flex-col gap-4" method="post" action="{{ route('restaurant.store') }}"
+              enctype="multipart/form-data">
         @csrf
         <!-- Name -->
             <div>
@@ -41,14 +47,14 @@
             <div>
                 <x-label for="state" value="État"/>
 
-                <x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')" required/>
+                <x-input id="state" class="block mt-1 w-full" type="text" name="state" :value="old('state')"/>
             </div>
 
             <!-- Type -->
             <div>
                 <x-label for="type" value="Type"/>
 
-                <x-input id="type" class="block mt-1 w-full" type="text" name="type" :value="old('type')" required/>
+                <x-input id="type" class="block mt-1 w-full" type="text" name="type" :value="old('type')"/>
             </div>
 
             <!-- Star -->
