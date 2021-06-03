@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateRestaurantRequest;
 use App\Models\Restaurant;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -37,15 +40,13 @@ class RestaurantController extends Controller
         return view()->make('restaurant.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    /**  Store a newly created resource in storage. */
+    public function store(CreateRestaurantRequest $request): RedirectResponse
     {
-        //
+        $request->file('logo')->storeAs('restaurants', $request->name);
+        Restaurant::create($request->except('logo'));
+
+        return redirect()->route('restaurant.index');
     }
 
     /**
