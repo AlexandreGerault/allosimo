@@ -19,7 +19,7 @@ class RestaurantController extends Controller
 
     public function index(Request $request): View
     {
-        $restaurants = Restaurant::query()->simplePaginate(12);
+        $restaurants = Restaurant::query()->simplePaginate(6);
 
         return view('restaurant.index')->with('restaurants', $restaurants);
     }
