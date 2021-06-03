@@ -15,11 +15,13 @@
 
     <x-dashboard-section>
         <div class="grid sm:grid-cols-2 gap-4">
-        @forelse($restaurants as $restaurant)
-                <x-restaurant-card :restaurant="$restaurant"/>
-        @empty
-            <p>Aucun restaurant enregistré pour le moment.</p>
-        @endforelse
+            @forelse($restaurants as $restaurant)
+                <a href="{{route('restaurant.edit', compact('restaurant'))}}">
+                    <x-restaurant-card :restaurant="$restaurant"/>
+                </a>
+            @empty
+                <p>Aucun restaurant enregistré pour le moment.</p>
+            @endforelse
         </div>
 
         <div class="mt-4">
