@@ -18,8 +18,8 @@ class CreateRestaurantRequest extends FormRequest
             'description' => ['required', 'string'],
             'logo'        => ['required', 'image', 'max:1024'],
             'town'        => ['required', 'string'],
-            'state'       => ['nullable', 'string', 'in_array:open,closed'],
-            'type'        => ['nullable', 'string', 'in_array:restaurant,bakery'],
+            'state'       => ['nullable', 'string', 'in:open,closed'],
+            'type'        => ['nullable', 'string', 'in:restaurant,bakery'],
             'stars'       => ['required', 'numeric', 'min:0', 'max:10']
         ];
     }
