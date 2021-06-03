@@ -42,9 +42,9 @@ class RestaurantController extends Controller
         //
     }
 
-    public function edit(Restaurant $restaurant)
+    public function edit(Restaurant $restaurant): View
     {
-        //
+        return view('restaurant.edit', compact('restaurant'));
     }
 
     public function update(Request $request, Restaurant $restaurant)
