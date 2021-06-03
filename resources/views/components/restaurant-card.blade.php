@@ -2,10 +2,10 @@
 
 <article class="bg-gray-800 rounded-lg px-6 py-4">
     <header class="mb-4">
-        <div class="flex items-center justify-between">
+        <div class="flex items-start justify-between">
             <p class="text-2xl text-white">{{ $restaurant->name }}</p>
 
-            <div class="text-white">
+            <div class="text-white w-8 h-8">
                 @switch ($restaurant->type)
                     @case('bakery')
                     <x-icon-bread/>
