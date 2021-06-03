@@ -53,7 +53,7 @@ class RestaurantPolicy
      */
     public function update(User $user, Restaurant $restaurant)
     {
-        //
+        return $user->hasRole('administrateur');
     }
 
     /**
