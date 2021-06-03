@@ -25,4 +25,12 @@
     <div class="my-2">
         <p class="text-sm text-gray-50">{{ $restaurant->description }}</p>
     </div>
+
+    <footer>
+        <div class="flex gap-1">
+            @for($i = 0; $i < 5; $i++)
+                <x-heroicon-s-star class="w-6 h-6 {{ $i < $restaurant->stars / 2 ? 'text-yellow-500' : 'text-gray-500' }}" />
+            @endfor
+        </div>
+    </footer>
 </article>
