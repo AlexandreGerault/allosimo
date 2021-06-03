@@ -62,7 +62,6 @@ class RestaurantTest extends TestCase
 
     public function test_an_admin_can_store_a_restaurant()
     {
-        $this->withoutExceptionHandling();
         Storage::fake('local');
         $user = User::factory()->create();
         $user->assignRole('administrateur');
@@ -75,5 +74,46 @@ class RestaurantTest extends TestCase
 
         $response->assertRedirect();
         $this->assertDatabaseCount('restaurants', 1);
+    }
+
+    /**
+     * EDIT A RESTAURANT
+     */
+    public function test_a_guest_is_redirected_before_editing_a_restaurant()
+    {
+        $restaurant = Restaurant::factory()->create();
+
+        $response = $this->get(route('restaurant.edit', compact('restaurant')));
+
+        $response->assertRedirect();
+    }
+
+    public function test_a_non_admin_user_cannot_edit_a_restaurant()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('client');
+        $this->actingAs($user);
+        $restaurant = Restaurant::factory()->create();
+
+        $response = $this->get(route('restaurant.edit', $restaurant));
+
+        $response->assertForbidden();
+    }
+
+    public function test_an_admin_user_can_edit_a_restaurant()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('administrateur');
+        $this->actingAs($user);
+        $restaurant = Restaurant::factory()->create();
+
+        $response = $this->get(route('restaurant.edit', $restaurant));
+
+        $response->assertSuccessful();
+        $response->assertSee($restaurant->name);
+        $response->assertSee($restaurant->description);
+        $response->assertSee($restaurant->type);
+        $response->assertSee($restaurant->state);
+        $response->assertSee($restaurant->stars);
     }
 }
