@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
+    /**
+     * RestaurantController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +33,6 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
