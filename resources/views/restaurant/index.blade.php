@@ -7,16 +7,23 @@
         Liste des restaurants
     </x-slot>
 
-    <x-container class="mt-6">
-        <x-button-link href="{{ route('restaurant.create') }}">Ajouter un restaurant</x-button-link>
+    <x-container class="mt-12">
+        <div class="flex justify-center">
+            <x-button-link href="{{ route('restaurant.create') }}">Ajouter un restaurant</x-button-link>
+        </div>
     </x-container>
+
     <x-dashboard-section>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid sm:grid-cols-2 gap-4">
         @forelse($restaurants as $restaurant)
                 <x-restaurant-card :restaurant="$restaurant"/>
         @empty
             <p>Aucun restaurant enregistré pour le moment.</p>
         @endforelse
+        </div>
+
+        <div class="mt-4">
+            {{ $restaurants->links() }}
         </div>
     </x-dashboard-section>
 </x-app-layout>
