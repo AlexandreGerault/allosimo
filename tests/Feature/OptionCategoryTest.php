@@ -23,6 +23,9 @@ class OptionCategoryTest extends TestCase
         $this->storePage  = route('admin.restaurant.option-category.store', ['restaurant' => $this->restaurant]);
     }
 
+    /**
+     * CREATE TESTS
+     */
     public function test_an_admin_can_create_an_options_category()
     {
         $this->actAsAdmin();
@@ -34,7 +37,6 @@ class OptionCategoryTest extends TestCase
 
     public function test_an_admin_can_store_an_options_category()
     {
-        $this->withoutExceptionHandling();
         $this->actAsAdmin();
         $inputs = OptionCategory::factory()->raw();
 
@@ -42,5 +44,24 @@ class OptionCategoryTest extends TestCase
 
         $response->assertRedirect();
         $this->assertDatabaseHas('option_categories', Arr::except($inputs, 'restaurant_id'));
+    }
+
+    /**
+     * UPDATE TESTS
+     */
+    public function test_an_admin_can_edit_an_option_category()
+    {
+        $this->actAsAdmin();
+        $category = OptionCategory::factory()->create();
+
+        $response = $this->get(
+            route(
+                'admin.restaurant.option-category.edit',
+                ['restaurant' => $category->restaurant, 'option_category' => $category]
+            )
+        );
+
+        $response->assertSuccessful();
+        $response->assertSee($category->name);
     }
 }
