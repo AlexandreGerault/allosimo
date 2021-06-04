@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -13,15 +14,16 @@ class ProductCategoryController extends Controller
         $this->authorizeResource(ProductCategory::class);
     }
 
-    public function index()
+    public function index(): View
     {
         $categories = ProductCategory::query()->withCount('products')->simplePaginate(25);
 
         return view('admin.category.index')->with('categories', $categories);
     }
 
-    public function create()
+    public function create(): View
     {
+        return view('admin.category.create');
     }
 
     public function store(Request $request)
