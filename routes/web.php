@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RestaurantController;
-use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
