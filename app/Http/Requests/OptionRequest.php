@@ -13,6 +13,9 @@ class OptionRequest extends FormRequest
 
     public function rules(): array
     {
-        return [];
+        return [
+            'name' => ['required', 'string'],
+            'price' => ['required', 'numeric', 'min:0']
+        ];
     }
 }
