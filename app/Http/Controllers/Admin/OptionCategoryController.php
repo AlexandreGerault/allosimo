@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class OptionCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(OptionCategory::class);
+    }
+
     public function index()
     {
     }
