@@ -16,6 +16,8 @@
             Modifier {{ $product->name }}
         </x-slot>
 
+        <x-validation-errors class="mb-4" :errors="$errors"/>
+
         <x-product-form :action="route('admin.restaurant.product.update', [$restaurant, $product])" method="PUT" :product="$product"
                         submit="Modifier"/>
     </x-dashboard-section>
