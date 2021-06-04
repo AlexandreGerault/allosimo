@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -14,6 +15,6 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        (new DatabaseSeeder())->call(DatabaseSeeder::class);
+        (new DatabaseSeeder())->call(RoleSeeder::class);
     }
 }
