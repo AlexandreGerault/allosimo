@@ -55,4 +55,14 @@
             @endforelse
         </div>
     </x-dashboard-section>
+
+    <x-dashboard-section>
+        <x-slot name="sectionHeading">
+            Catégories d'options
+        </x-slot>
+
+        <x-button-link href="{{ route('admin.restaurant.option-category.create', $restaurant) }}">
+            Créer une catégorie d'options pour ce restaurant
+        </x-button-link>
+    </x-dashboard-section>
 </x-app-layout>
