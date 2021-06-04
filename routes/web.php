@@ -35,7 +35,7 @@ Route::prefix('admin')
     ->as('admin.')
     ->group(
     function () {
-        Route::resource('productCategory', ProductCategoryController::class);
+        Route::resource('product-category', ProductCategoryController::class);
         Route::resource('restaurant.product', ProductController::class);
         Route::resource('restaurant', RestaurantController::class);
     }

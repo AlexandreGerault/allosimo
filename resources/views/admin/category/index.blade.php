@@ -9,7 +9,7 @@
 
     <x-container class="mt-12">
         <div class="flex justify-center">
-            <x-button-link href="{{ route('admin.productCategory.create') }}">Ajouter une catégorie</x-button-link>
+            <x-button-link href="{{ route('admin.product-category.create') }}">Ajouter une catégorie</x-button-link>
         </div>
     </x-container>
 
@@ -29,7 +29,7 @@
                             {{ $category->products_count }} produits
                         </div>
                         <div>
-                            <a href="{{ route('admin.productCategory.edit', [$category]) }}"
+                            <a href="{{ route('admin.product-category.edit', [$category]) }}"
                                class="text-gray-500 hover:text-red-700 transition duration-200">
                                 <x-heroicon-s-pencil class="w-6 h-6"/>
                             </a>

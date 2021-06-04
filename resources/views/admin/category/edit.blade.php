@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">
-        Ajouter une catégorie
+        Modifier {{ $productCategory->name }}
     </x-slot>
 
     <x-slot name="header">
-        Ajouter une catégorie
+        Modifier {{ $productCategory->name }}
     </x-slot>
 
     <x-container class="mt-12">
@@ -19,9 +19,9 @@
         <x-validation-errors class="mb-4" :errors="$errors"/>
 
         <x-slot name="sectionHeading">
-            Ajout d&apos;une catégorie
+            Modification de {{ $productCategory->name }}
         </x-slot>
 
-        <x-product-category-form :action="route('admin.product-category.store')" submit="Ajouter une catégorie"/>
+        <x-product-category-form :action="route('admin.product-category.update', $productCategory)" :category="$productCategory" method="PUT" submit="Modifier"/>
     </x-dashboard-section>
 </x-app-layout>

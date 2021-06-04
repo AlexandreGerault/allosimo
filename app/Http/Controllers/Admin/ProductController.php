@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Restaurant;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
