@@ -20,4 +20,13 @@ class OptionCategoryTest extends TestCase
         $this->createPage = route('admin.restaurant.option-category.create', ['restaurant' => $this->restaurant]);
         $this->storePage  = route('admin.restaurant.option-category.store', ['restaurant' => $this->restaurant]);
     }
+
+    public function test_an_admin_can_create_an_options_category()
+    {
+        $this->actAsAdmin();
+
+        $response = $this->get($this->createPage);
+
+        $response->assertSuccessful();
+    }
 }
