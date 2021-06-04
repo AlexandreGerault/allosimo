@@ -65,10 +65,17 @@
             Créer une catégorie d'options pour ce restaurant
         </x-button-link>
 
-        @foreach($optionCategories as $category)
-            <div>
-                {{ $category->name }}
-            </div>
-        @endforeach
+        <div class="flex gap-4 mt-6">
+            @foreach($optionCategories as $category)
+                <div class="px-6 py-4 bg-white shadow-md rounded-lg text-gray-800 flex gap-2 justify-between">
+                    <span>
+                    {{ $category->name }}
+                    </span>
+                    <a href="{{ route('admin.restaurant.option-category.edit', [$restaurant, $category]) }}" class="text-gray-800 hover:text-red-800 transition duration-200">
+                        <x-heroicon-s-pencil-alt class="w-6 h-6"/>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </x-dashboard-section>
 </x-app-layout>
