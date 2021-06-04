@@ -19,6 +19,7 @@
     <!-- Price -->
     <div>
         <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="MAD"
+                       :value="old('price') ?? $product->price"
                        label="Price" aria-describedby="price"/>
     </div>
 
