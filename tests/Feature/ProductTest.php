@@ -18,8 +18,8 @@ class ProductTest extends TestCase
         parent::setUp();
 
         $this->restaurant = Restaurant::factory()->create();
-        $this->createPage = route('admin.restaurant.category.create', ['restaurant' => $this->restaurant]);
-        $this->storePage  = route('admin.restaurant.category.store', ['restaurant' => $this->restaurant]);
+        $this->createPage = route('admin.restaurant.product.create', ['restaurant' => $this->restaurant]);
+        $this->storePage  = route('admin.restaurant.product.store', ['restaurant' => $this->restaurant]);
     }
 
     public function test_an_administrator_can_show_the_page()
