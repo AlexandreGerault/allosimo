@@ -30,7 +30,7 @@ class RestaurantPolicy
      */
     public function view(User $user, Restaurant $restaurant)
     {
-        //
+        return $user->hasRole('administrateur');
     }
 
     /**
