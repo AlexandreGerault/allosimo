@@ -10,7 +10,7 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'town', 'logo', 'stars'];
+    protected $fillable = ['name', 'description', 'town', 'logo', 'stars', 'state'];
 
     public function productCategories(): HasMany
     {
