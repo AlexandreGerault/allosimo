@@ -16,10 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Role::firstOrCreate(['name' => 'client']);
-        Role::firstOrCreate(['name' => 'livreur']);
-        Role::firstOrCreate(['name' => 'administrateur']);
-
+        $this->call(RoleSeeder::class);
         $admin = User::firstOrCreate(
             [
                 'name'     => 'Administrateur',
