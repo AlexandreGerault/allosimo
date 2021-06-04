@@ -6,7 +6,7 @@ use App\Models\ProductCategory;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProductCategoryPolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 

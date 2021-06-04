@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -18,9 +19,9 @@ class ProductCategoryController extends Controller
     {
     }
 
-    public function create(): View
+    public function create(Restaurant $restaurant): View
     {
-        return view('admin.restaurant.category.create');
+        return view('admin.restaurant.category.create', compact('restaurant'));
     }
 
     /**

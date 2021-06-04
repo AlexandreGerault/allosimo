@@ -7,7 +7,7 @@ use App\Models\User;
 use Tests\TestCase;
 use Tests\Traits\HasAdminAreas;
 
-class ProductCategoryTest extends TestCase
+class ProductTest extends TestCase
 {
     use HasAdminAreas;
 
