@@ -38,9 +38,9 @@ class ProductCategoryController extends Controller
     {
     }
 
-    public function edit(ProductCategory $productCategory)
+    public function edit(ProductCategory $productCategory): View
     {
-
+        return view('admin.category.edit', compact('productCategory'));
     }
 
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory): RedirectResponse
