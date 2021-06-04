@@ -30,7 +30,11 @@ class RestaurantController extends Controller
 
     public function store(RestaurantRequest $request): RedirectResponse
     {
-        $request->file('logo')->storeAs('restaurants', $request->name);
+        $logoFile = $request->file('logo');
+        $logoFile->storeAs(
+            'public/restaurants',
+            "{$request->name}.{$logoFile->getClientOriginalExtension()}"
+        );
         Restaurant::create($request->except('logo'));
 
         return redirect()->route('admin.restaurant.index');
@@ -38,7 +42,7 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
-
+        return view('admin.restaurant.show', compact('restaurant'));
     }
 
     public function edit(Restaurant $restaurant): View
@@ -48,7 +52,15 @@ class RestaurantController extends Controller
 
     public function update(RestaurantRequest $request, Restaurant $restaurant): RedirectResponse
     {
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoFile->storeAs(
+                'public/restaurants',
+                "{$request->name}.{$logoFile->getClientOriginalExtension()}"
+            );
+        }
         $restaurant->update($request->except('logo'));
+
         return redirect()->route('admin.restaurant.index');
     }
 
