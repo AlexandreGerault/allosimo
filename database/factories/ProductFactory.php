@@ -17,6 +17,7 @@ class ProductFactory extends Factory
             'name'                => $this->faker->name,
             'restaurant_id'       => Restaurant::factory()->create()->id,
             'product_category_id' => ProductCategory::factory()->create()->id,
+            'price'               => $this->faker->numberBetween(1, 150)
         ];
     }
 
