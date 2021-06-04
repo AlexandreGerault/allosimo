@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('admin.restaurant.index')" :active="request()->routeIs('admin.restaurant.*')">
                         Restaurants
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.productCategory.index')" :active="request()->routeIs('admin.productCategory.*')">
+                        Catégories
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -73,6 +77,10 @@
 
             <x-responsive-nav-link :href="route('admin.restaurant.index')" :active="request()->routeIs('admin.restaurant.*')">
                 Restaurants
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('admin.productCategory.index')" :active="request()->routeIs('admin.productCategory.*')">
+                Catégories
             </x-responsive-nav-link>
         </div>
 
