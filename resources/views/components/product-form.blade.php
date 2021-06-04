@@ -22,6 +22,20 @@
                        label="Price" aria-describedby="price"/>
     </div>
 
+    <!-- Category -->
+    <div>
+        <x-label for="category" value="Catégorie"/>
+
+        <x-select id="category" class="block mt-1 w-full" name="category">
+            @foreach(\App\Models\ProductCategory::all() as $category)
+                <option value="{{ $category->id }}"
+                        @if(old('category') ===  $category->id) selected @endif>
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </x-select>
+    </div>
+
     <div>
         <x-button class="mt-4">
             {{ $submit }}
