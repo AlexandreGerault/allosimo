@@ -45,7 +45,28 @@ class ProductTest extends TestCase
         $this->actingAs($user);
         $inputs = Product::factory()->raw();
 
-        $response = $this->post(route('admin.restaurant.product.store', ['restaurant' => $this->restaurant]), $inputs + ['category' => $inputs['product_category_id']]);
+        $response = $this->post(
+            route('admin.restaurant.product.store', ['restaurant' => $this->restaurant]),
+            $inputs + ['category' => $inputs['product_category_id']]
+        );
+
+        $response->assertSessionDoesntHaveErrors();
+        $response->assertRedirect();
+        $this->assertDatabaseHas('products', Arr::except($inputs, 'restaurant_id'));
+    }
+
+    public function test_an_admin_can_update_a_product()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('administrateur');
+        $this->actingAs($user);
+        $product = Product::factory()->create();
+        $inputs  = Product::factory()->raw();
+
+        $response = $this->put(
+            route('admin.restaurant.product.update', ['restaurant' => $this->restaurant, $product]),
+            $inputs + ['category' => $inputs['product_category_id']]
+        );
 
         $response->assertSessionDoesntHaveErrors();
         $response->assertRedirect();
