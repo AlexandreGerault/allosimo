@@ -7,57 +7,18 @@ use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Tests\Traits\HasAdminAreas;
 
 class RestaurantTest extends TestCase
 {
-    /**
-     * CREATE A RESTAURANT
-     */
-    public function test_a_guest_cannot_show_create_restaurant_page()
+    use HasAdminAreas;
+
+    protected function setUp(): void
     {
-        $response = $this->get(route('admin.restaurant.create'));
+        parent::setUp();
 
-        $response->assertRedirect();
-    }
-
-    public function test_a_non_administrator_cannot_show_the_page()
-    {
-        $user = User::factory()->create();
-        $user->assignRole('client');
-        $this->actingAs($user);
-
-        $response = $this->get(route('admin.restaurant.create'));
-
-        $response->assertForbidden();
-    }
-
-    public function test_an_administrator_can_show_the_page()
-    {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
-
-        $response = $this->get(route('admin.restaurant.create'));
-
-        $response->assertSuccessful();
-    }
-
-    public function test_a_guest_cannot_store_a_restaurant()
-    {
-        $response = $this->post(route('admin.restaurant.store'));
-
-        $response->assertRedirect();
-    }
-
-    public function test_a_non_admin_user_cannot_store_a_restaurant()
-    {
-        $user = User::factory()->create();
-        $user->assignRole('client');
-        $this->actingAs($user);
-
-        $response = $this->post(route('admin.restaurant.store'));
-
-        $response->assertForbidden();
+        $this->createPage = route('admin.restaurant.create');
+        $this->storePage  = route('admin.restaurant.store');
     }
 
     public function test_an_admin_can_store_a_restaurant()
@@ -128,7 +89,7 @@ class RestaurantTest extends TestCase
         $user->assignRole('administrateur');
         $this->actingAs($user);
         $restaurant = Restaurant::factory()->create();
-        $inputs = Restaurant::factory()->raw();
+        $inputs     = Restaurant::factory()->raw();
 
         $response = $this->put(route('admin.restaurant.update', $restaurant), $inputs);
         $response->assertRedirect();
