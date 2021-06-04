@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\OptionCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,7 @@ Route::prefix('admin')
     ->group(
     function () {
         Route::resource('product-category', ProductCategoryController::class);
+        Route::resource('restaurant.option-category', OptionCategoryController::class);
         Route::resource('restaurant.product', ProductController::class);
         Route::resource('restaurant', RestaurantController::class);
     }
