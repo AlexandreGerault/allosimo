@@ -9,7 +9,6 @@ use App\Models\OptionCategory;
 use App\Models\Restaurant;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
@@ -27,9 +26,13 @@ class OptionController extends Controller
         return view('admin.restaurant.options-category.options.create', compact('restaurant', 'option_category'));
     }
 
-    public function store(OptionRequest $request, Restaurant $restaurant, OptionCategory $option_category): RedirectResponse
-    {
+    public function store(
+        OptionRequest $request,
+        Restaurant $restaurant,
+        OptionCategory $option_category
+    ): RedirectResponse {
         $option_category->options()->save(Option::make($request->validated()));
+
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
@@ -37,12 +40,22 @@ class OptionController extends Controller
     {
     }
 
-    public function edit(Option $option)
+    public function edit(Restaurant $restaurant, OptionCategory $option_category, Option $option): View
     {
+        return view(
+            'admin.restaurant.options-category.options.edit',
+            compact('restaurant', 'option_category', 'option')
+        );
     }
 
-    public function update(Request $request, Option $option)
-    {
+    public function update(
+        OptionRequest $request,
+        Restaurant $restaurant,
+        OptionCategory $option_category,
+        Option $option
+    ) {
+        $option->update($request->validated());
+        return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
     public function destroy(Option $option)

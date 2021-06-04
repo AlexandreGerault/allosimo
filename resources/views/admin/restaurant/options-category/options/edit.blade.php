@@ -23,7 +23,8 @@
         </x-slot>
 
         <x-option-form
-            :action="route('admin.restaurant.option-category.option.update', $restaurant, $category, $option)"
+            :action="route('admin.restaurant.option-category.option.update', [$restaurant, $option_category, $option])"
+            :option="$option" method="PUT"
             submit="Modifier"/>
     </x-dashboard-section>
 </x-app-layout>
