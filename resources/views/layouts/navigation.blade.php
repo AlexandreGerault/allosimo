@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+                    <x-nav-link :href="route('admin.restaurant.index')" :active="request()->routeIs('restaurant.index')">
                         Restaurants
                     </x-nav-link>
                 </div>
@@ -71,7 +71,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+            <x-responsive-nav-link :href="route('admin.restaurant.index')" :active="request()->routeIs('restaurant.index')">
                 Restaurants
             </x-responsive-nav-link>
         </div>

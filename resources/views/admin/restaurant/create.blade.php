@@ -10,6 +10,6 @@
     <x-dashboard-section>
         <x-validation-errors class="mb-4" :errors="$errors"/>
 
-        <x-restaurant-form :restaurant="new \App\Models\Restaurant()" :action="route('restaurant.store')" submit="Ajouter un restaurant" />
+        <x-restaurant-form :restaurant="new \App\Models\Restaurant()" :action="route('admin.restaurant.store')" submit="Ajouter un restaurant" />
     </x-dashboard-section>
 </x-app-layout>

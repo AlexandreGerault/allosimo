@@ -15,7 +15,7 @@ class RestaurantTest extends TestCase
      */
     public function test_a_guest_cannot_show_create_restaurant_page()
     {
-        $response = $this->get(route('restaurant.create'));
+        $response = $this->get(route('admin.restaurant.create'));
 
         $response->assertRedirect();
     }
@@ -26,7 +26,7 @@ class RestaurantTest extends TestCase
         $user->assignRole('client');
         $this->actingAs($user);
 
-        $response = $this->get(route('restaurant.create'));
+        $response = $this->get(route('admin.restaurant.create'));
 
         $response->assertForbidden();
     }
@@ -37,14 +37,14 @@ class RestaurantTest extends TestCase
         $user->assignRole('administrateur');
         $this->actingAs($user);
 
-        $response = $this->get(route('restaurant.create'));
+        $response = $this->get(route('admin.restaurant.create'));
 
         $response->assertSuccessful();
     }
 
     public function test_a_guest_cannot_store_a_restaurant()
     {
-        $response = $this->post(route('restaurant.store'));
+        $response = $this->post(route('admin.restaurant.store'));
 
         $response->assertRedirect();
     }
@@ -55,7 +55,7 @@ class RestaurantTest extends TestCase
         $user->assignRole('client');
         $this->actingAs($user);
 
-        $response = $this->post(route('restaurant.store'));
+        $response = $this->post(route('admin.restaurant.store'));
 
         $response->assertForbidden();
     }
@@ -70,7 +70,7 @@ class RestaurantTest extends TestCase
         $logo       = UploadedFile::fake()->image('logo.jpg', 300, 300)->size(100);
         $restaurant = Restaurant::factory()->raw(['logo' => $logo]);
 
-        $response = $this->post(route('restaurant.store'), $restaurant);
+        $response = $this->post(route('admin.restaurant.store'), $restaurant);
 
         $response->assertRedirect();
         $this->assertDatabaseCount('restaurants', 1);
@@ -84,10 +84,10 @@ class RestaurantTest extends TestCase
         $restaurant = Restaurant::factory()->create();
         $inputs     = Restaurant::factory()->raw();
 
-        $response = $this->get(route('restaurant.edit', $restaurant));
+        $response = $this->get(route('admin.restaurant.edit', $restaurant));
         $response->assertRedirect();
 
-        $response = $this->put(route('restaurant.update', $restaurant), $inputs);
+        $response = $this->put(route('admin.restaurant.update', $restaurant), $inputs);
         $response->assertRedirect();
     }
 
@@ -98,11 +98,11 @@ class RestaurantTest extends TestCase
         $this->actingAs($user);
 
         $restaurant = Restaurant::factory()->create();
-        $response   = $this->get(route('restaurant.edit', $restaurant));
+        $response   = $this->get(route('admin.restaurant.edit', $restaurant));
         $response->assertForbidden();
 
         $restaurantInputs = Restaurant::factory()->raw();
-        $response         = $this->put(route('restaurant.update', $restaurant), $restaurantInputs);
+        $response         = $this->put(route('admin.restaurant.update', $restaurant), $restaurantInputs);
         $response->assertForbidden();
     }
 
@@ -113,7 +113,7 @@ class RestaurantTest extends TestCase
         $this->actingAs($user);
         $restaurant = Restaurant::factory()->create();
 
-        $response = $this->get(route('restaurant.edit', $restaurant));
+        $response = $this->get(route('admin.restaurant.edit', $restaurant));
         $response->assertSuccessful();
         $response->assertSee($restaurant->name);
         $response->assertSee($restaurant->description);
@@ -130,7 +130,7 @@ class RestaurantTest extends TestCase
         $restaurant = Restaurant::factory()->create();
         $inputs = Restaurant::factory()->raw();
 
-        $response = $this->put(route('restaurant.update', $restaurant), $inputs);
+        $response = $this->put(route('admin.restaurant.update', $restaurant), $inputs);
         $response->assertRedirect();
         $this->assertDatabaseHas('restaurants', $inputs);
     }

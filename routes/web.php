@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(
+    '/',
+    function () {
+        return view('welcome');
+    }
+);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get(
+    '/dashboard',
+    function () {
+        return view('dashboard');
+    }
+)->middleware(['auth'])->name('dashboard');
 
-Route::resource('restaurant', RestaurantController::class);
-require __DIR__.'/auth.php';
+Route::prefix('admin')
+    ->middleware('auth')
+    ->as('admin.')
+    ->group(
+    function () {
+        Route::resource('restaurant.category', ProductCategoryController::class);
+        Route::resource('restaurant', RestaurantController::class);
+    }
+);
+
+require __DIR__ . '/auth.php';
