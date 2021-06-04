@@ -26,8 +26,12 @@
     <!-- Logo -->
     <div>
         <x-label for="logo" value="Logo"/>
-
-        <x-input id="logo" class="block mt-1 w-full" type="file" name="logo" :value="old('logo')" required/>
+        @if($method === "POST")
+            <x-input id="logo" class="block mt-1 w-full rounded-none" type="file" name="logo" :value="old('logo')"
+                     required/>
+        @else
+            <x-input id="logo" class="block mt-1 w-full rounded-none" type="file" name="logo" :value="old('logo')"/>
+        @endif
     </div>
 
     <!-- Town -->
