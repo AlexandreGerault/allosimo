@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Option;
 use App\Models\OptionCategory;
 use App\Models\Restaurant;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 use Tests\Traits\HasAdminAreas;
 
@@ -29,5 +31,17 @@ class OptionTest extends TestCase
             'admin.restaurant.option-category.option.store',
             [$this->restaurant, $this->category]
         );
+    }
+
+    public function test_an_admin_can_store_an_option()
+    {
+        $this->withoutExceptionHandling();
+        $this->actAsAdmin();
+        $inputs = Option::factory()->for($this->category, 'category')->raw();
+
+        $response = $this->post($this->storePage, $inputs);
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('options', $inputs);
     }
 }
