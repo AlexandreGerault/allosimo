@@ -32,9 +32,7 @@ trait HasAdminAreas
 
     public function test_an_administrator_can_show_the_page()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
 
         $response = $this->get($this->createPage);
 

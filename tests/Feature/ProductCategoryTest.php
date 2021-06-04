@@ -2,8 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\ProductCategory;
 use Tests\TestCase;
 use Tests\Traits\HasAdminAreas;
 
@@ -17,5 +16,16 @@ class ProductCategoryTest extends TestCase
 
         $this->createPage = route('admin.productCategory.create');
         $this->storePage = route('admin.productCategory.store');
+    }
+
+    public function test_an_admin_can_store_a_category()
+    {
+        $this->actAsAdmin();
+        $inputs = ProductCategory::factory()->raw();
+
+        $response = $this->post($this->storePage, $inputs);
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('product_categories', $inputs);
     }
 }

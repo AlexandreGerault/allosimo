@@ -24,9 +24,7 @@ class RestaurantTest extends TestCase
     public function test_an_admin_can_store_a_restaurant()
     {
         Storage::fake('local');
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
 
         $logo       = UploadedFile::fake()->image('logo.jpg', 300, 300)->size(100);
         $restaurant = Restaurant::factory()->raw(['logo' => $logo]);
@@ -69,9 +67,7 @@ class RestaurantTest extends TestCase
 
     public function test_an_admin_user_can_edit_a_restaurant()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
         $restaurant = Restaurant::factory()->create();
 
         $response = $this->get(route('admin.restaurant.edit', $restaurant));
@@ -85,9 +81,7 @@ class RestaurantTest extends TestCase
 
     public function test_an_admin_user_can_update_a_restaurant()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
         $restaurant = Restaurant::factory()->create();
         $inputs     = Restaurant::factory()->raw();
 

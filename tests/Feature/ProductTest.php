@@ -26,9 +26,7 @@ class ProductTest extends TestCase
 
     public function test_an_administrator_can_show_the_page()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
 
         $response = $this->get(
             route('admin.restaurant.product.create', $this->restaurant),
@@ -40,9 +38,7 @@ class ProductTest extends TestCase
 
     public function test_an_admin_can_store_a_product()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
         $inputs = Product::factory()->raw();
 
         $response = $this->post(
@@ -57,9 +53,7 @@ class ProductTest extends TestCase
 
     public function test_an_admin_can_update_a_product()
     {
-        $user = User::factory()->create();
-        $user->assignRole('administrateur');
-        $this->actingAs($user);
+        $this->actAsAdmin();
         $product = Product::factory()->create();
         $inputs  = Product::factory()->raw();
 
