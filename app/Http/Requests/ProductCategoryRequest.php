@@ -13,6 +13,8 @@ class ProductCategoryRequest extends FormRequest
 
     public function rules(): array
     {
-        return [];
+        return [
+            'name' => ['required', 'string', 'unique:product_categories,name']
+        ];
     }
 }
