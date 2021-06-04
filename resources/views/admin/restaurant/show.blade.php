@@ -67,13 +67,34 @@
 
         <div class="flex gap-4 mt-6">
             @foreach($optionCategories as $category)
-                <div class="px-6 py-4 bg-white shadow-md rounded-lg text-gray-800 flex gap-2 justify-between">
-                    <span>
-                    {{ $category->name }}
-                    </span>
-                    <a href="{{ route('admin.restaurant.option-category.edit', [$restaurant, $category]) }}" class="text-gray-800 hover:text-red-800 transition duration-200">
-                        <x-heroicon-s-pencil-alt class="w-6 h-6"/>
-                    </a>
+                <div class="px-6 py-4 bg-white shadow-md rounded-lg text-gray-800">
+                    <div class="flex gap-2 justify-between mb-6">
+                        <div class="text-xl font-semibold">
+                            {{ $category->name }}
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="{{ route('admin.restaurant.option-category.edit', [$restaurant, $category]) }}"
+                               class="text-gray-800 hover:text-red-800 transition duration-200">
+                                <x-heroicon-s-pencil-alt class="w-6 h-6"/>
+                            </a>
+                            <a href="{{ route('admin.restaurant.option-category.option.create', [$restaurant, $category]) }}"
+                               class="text-gray-800 hover:text-red-800 transition duration-200">
+                                <x-heroicon-s-plus-circle class="w-6 h-6"/>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <ul>
+                            @foreach($category->options as $option)
+                                <li class="flex gap-8 justify-between">
+                                    <span>{{ $option->name }}</span>
+                                    <span>{{ $option->price }} DH</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             @endforeach
         </div>
