@@ -82,9 +82,12 @@ class RestaurantTest extends TestCase
     public function test_a_guest_is_redirected_before_editing_a_restaurant()
     {
         $restaurant = Restaurant::factory()->create();
+        $inputs     = Restaurant::factory()->raw();
 
-        $response = $this->get(route('restaurant.edit', compact('restaurant')));
+        $response = $this->get(route('restaurant.edit', $restaurant));
+        $response->assertRedirect();
 
+        $response = $this->put(route('restaurant.update', $restaurant), $inputs);
         $response->assertRedirect();
     }
 
@@ -93,10 +96,13 @@ class RestaurantTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('client');
         $this->actingAs($user);
+
         $restaurant = Restaurant::factory()->create();
+        $response   = $this->get(route('restaurant.edit', $restaurant));
+        $response->assertForbidden();
 
-        $response = $this->get(route('restaurant.edit', $restaurant));
-
+        $restaurantInputs = Restaurant::factory()->raw();
+        $response         = $this->put(route('restaurant.update', $restaurant), $restaurantInputs);
         $response->assertForbidden();
     }
 
@@ -108,12 +114,24 @@ class RestaurantTest extends TestCase
         $restaurant = Restaurant::factory()->create();
 
         $response = $this->get(route('restaurant.edit', $restaurant));
-
         $response->assertSuccessful();
         $response->assertSee($restaurant->name);
         $response->assertSee($restaurant->description);
         $response->assertSee($restaurant->type);
         $response->assertSee($restaurant->state);
         $response->assertSee($restaurant->stars);
+    }
+
+    public function test_an_admin_user_can_update_a_restaurant()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('administrateur');
+        $this->actingAs($user);
+        $restaurant = Restaurant::factory()->create();
+        $inputs = Restaurant::factory()->raw();
+
+        $response = $this->put(route('restaurant.update', $restaurant), $inputs);
+        $response->assertRedirect();
+        $this->assertDatabaseHas('restaurants', $inputs);
     }
 }

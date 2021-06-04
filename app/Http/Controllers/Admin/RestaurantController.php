@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateRestaurantRequest;
+use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +29,7 @@ class RestaurantController extends Controller
         return view('restaurant.create');
     }
 
-    public function store(CreateRestaurantRequest $request): RedirectResponse
+    public function store(RestaurantRequest $request): RedirectResponse
     {
         $request->file('logo')->storeAs('restaurants', $request->name);
         Restaurant::create($request->except('logo'));
@@ -47,9 +47,10 @@ class RestaurantController extends Controller
         return view('restaurant.edit', compact('restaurant'));
     }
 
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $restaurant->update($request->except('logo'));
+        return redirect()->route('restaurant.index');
     }
 
     public function destroy(Restaurant $restaurant)

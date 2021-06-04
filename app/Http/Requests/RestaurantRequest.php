@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CreateRestaurantRequest extends FormRequest
+class RestaurantRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -13,14 +14,30 @@ class CreateRestaurantRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        $rules = [
             'name'        => ['required', 'string', 'unique:restaurants,name'],
             'description' => ['required', 'string'],
-            'logo'        => ['required', 'image', 'max:1024'],
             'town'        => ['required', 'string'],
             'state'       => ['nullable', 'string', 'in:open,closed'],
             'type'        => ['nullable', 'string', 'in:restaurant,bakery'],
             'stars'       => ['required', 'numeric', 'min:0', 'max:10']
         ];
+
+        if ($this->isMethod('POST')) {
+            $rules['logo'] = ['required', 'image', 'max:1024'];
+        }
+
+        if ($this->method() === "PUT") {
+            $rules['name'] = [
+                'required',
+                'string',
+                Rule::unique('restaurants')->ignoreModel($this->route('restaurant'))
+            ];
+            if ($this->get('logo')) {
+                $rules['logo'] = ['sometimes', 'image', 'max:1024'];
+            }
+        }
+
+        return $rules;
     }
 }
