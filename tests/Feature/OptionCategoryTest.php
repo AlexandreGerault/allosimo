@@ -26,15 +26,6 @@ class OptionCategoryTest extends TestCase
     /**
      * CREATE TESTS
      */
-    public function test_an_admin_can_create_an_options_category()
-    {
-        $this->actAsAdmin();
-
-        $response = $this->get($this->createPage);
-
-        $response->assertSuccessful();
-    }
-
     public function test_an_admin_can_store_an_options_category()
     {
         $this->actAsAdmin();

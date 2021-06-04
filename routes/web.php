@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
@@ -37,6 +38,7 @@ Route::prefix('admin')
     ->group(
     function () {
         Route::resource('product-category', ProductCategoryController::class);
+        Route::resource('restaurant.option-category.option', OptionController::class);
         Route::resource('restaurant.option-category', OptionCategoryController::class);
         Route::resource('restaurant.product', ProductController::class);
         Route::resource('restaurant', RestaurantController::class);
