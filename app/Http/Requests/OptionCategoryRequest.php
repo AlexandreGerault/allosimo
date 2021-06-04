@@ -14,6 +14,18 @@ class OptionCategoryRequest extends FormRequest
 
     public function rules(): array
     {
+        if ($this->isMethod("PUT")) {
+            return [
+                'name' => [
+                    'required',
+                    'string',
+                    Rule::unique('option_categories')
+                        ->where('restaurant_id', $this->route('restaurant')->id)
+                        ->ignoreModel($this->route('option_category'))
+                ]
+            ];
+        }
+
         return [
             'name' => [
                 'required',
