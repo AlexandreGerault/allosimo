@@ -15,7 +15,6 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_id');
             $table->string('name');
             $table->timestamps();
         });
