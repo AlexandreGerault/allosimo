@@ -19,8 +19,9 @@ class OptionCategoryController extends Controller
     {
     }
 
-    public function create()
+    public function create(Restaurant $restaurant)
     {
+        return view('admin.restaurant.options-category.create', compact('restaurant'));
     }
 
     public function store(OptionCategoryRequest $request, Restaurant $restaurant)
