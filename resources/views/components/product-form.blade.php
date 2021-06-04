@@ -30,7 +30,7 @@
         <x-select id="category" class="block mt-1 w-full" name="category">
             @foreach(\App\Models\ProductCategory::all() as $category)
                 <option value="{{ $category->id }}"
-                        @if(old('category') ===  $category->id) selected @endif>
+                        @if(old('category') ===  $category->id || $product->category->id === $category->id) selected @endif>
                     {{ $category->name }}
                 </option>
             @endforeach
