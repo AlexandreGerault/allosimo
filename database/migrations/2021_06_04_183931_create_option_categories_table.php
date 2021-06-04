@@ -16,7 +16,7 @@ class CreateOptionCategoriesTable extends Migration
         Schema::create('option_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id');
-            $table->name('name');
+            $table->string('name');
             $table->timestamps();
         });
     }
