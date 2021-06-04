@@ -35,8 +35,15 @@
             Ajouter un nouveau produit
         </x-button-link>
 
-        <div class="mt-4">
-            @forelse($restaurant->products as $product)
+        <div class="mt-6 flex flex-col gap-5">
+            @forelse($categories as $category => $products)
+                <h4 class="text-xl">{{ $category }}</h4>
+                @foreach($products as $product)
+                    <div class="flex justify-between">
+                        <span>{{ $product->name }}</span>
+                        <span>{{ $product->price }} {{ $product->currency  }}</span>
+                    </div>
+                @endforeach
             @empty
                 <p>Aucune catégorie pour le moment</p>
             @endforelse
