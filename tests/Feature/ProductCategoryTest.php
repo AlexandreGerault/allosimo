@@ -18,4 +18,9 @@ class ProductCategoryTest extends TestCase
         $this->createPage = route('admin.productCategory.create');
         $this->storePage = route('admin.productCategory.store');
     }
+
+    public function test_an_admin_can_store_a_category()
+    {
+
+    }
 }

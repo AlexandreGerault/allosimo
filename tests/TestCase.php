@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,5 +17,12 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         (new DatabaseSeeder())->call(RoleSeeder::class);
+    }
+
+    public function actAsAdmin()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('administrateur');
+        $this->actingAs($user);
     }
 }
