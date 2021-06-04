@@ -51,8 +51,8 @@
                     @if(old('state') === 'open' || $restaurant->state === 'open') selected @endif>
                 Ouvert
             </option>
-            <option value="close"
-                    @if(old('type') === 'close' || $restaurant->state === 'close') selected @endif>
+            <option value="closed"
+                    @if(old('type') === 'closed' || $restaurant->state === 'closed') selected @endif>
                 Fermé
             </option>
         </x-select>
