@@ -39,7 +39,8 @@
 
     <footer class="bg-gray-900 px-6 py-4">
         <div class="flex gap-4">
-            <a href="{{ route('admin.restaurant.show', $restaurant) }}" class="text-gray-200 hover:text-white transition duration-200">
+            <a href="{{ route('admin.restaurant.show', $restaurant) }}"
+               class="text-gray-200 hover:text-white transition duration-200">
                 <x-heroicon-s-eye class="w-6 h-6"/>
             </a>
 
