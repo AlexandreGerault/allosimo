@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\ProductCategory;
+use App\Models\Product;
 use App\Models\Restaurant;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RestaurantModelTest extends TestCase
@@ -13,8 +11,9 @@ class RestaurantModelTest extends TestCase
     public function test_a_restaurant_can_have_product_categories()
     {
         $restaurant = Restaurant::factory()->create();
-        $restaurant->productCategories()->createMany(ProductCategory::factory()->times(3)->raw());
+        $products   = Product::factory()->times(3)->restaurant($restaurant)->create();
+        $restaurant->products()->saveMany($products);
 
-        $this->assertInstanceOf(ProductCategory::class,$restaurant->productCategories()->first());
+        $this->assertInstanceOf(Product::class, $restaurant->products()->first());
     }
 }

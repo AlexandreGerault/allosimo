@@ -12,8 +12,8 @@ class Restaurant extends Model
 
     protected $fillable = ['name', 'description', 'town', 'logo', 'stars', 'state'];
 
-    public function productCategories(): HasMany
+    public function products(): HasMany
     {
-        return $this->hasMany(ProductCategory::class);
+        return $this->hasMany(Product::class);
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\ProductCategory;
-use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductCategoryFactory extends Factory
@@ -13,8 +12,7 @@ class ProductCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'restaurant_id' => Restaurant::factory()
+            'name' => $this->faker->name
         ];
     }
 }
