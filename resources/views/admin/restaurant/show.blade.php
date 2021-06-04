@@ -64,5 +64,11 @@
         <x-button-link href="{{ route('admin.restaurant.option-category.create', $restaurant) }}">
             Créer une catégorie d'options pour ce restaurant
         </x-button-link>
+
+        @foreach($optionCategories as $category)
+            <div>
+                {{ $category->name }}
+            </div>
+        @endforeach
     </x-dashboard-section>
 </x-app-layout>
