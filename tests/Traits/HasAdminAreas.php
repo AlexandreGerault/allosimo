@@ -41,14 +41,14 @@ trait HasAdminAreas
         $response->assertSuccessful();
     }
 
-    public function test_a_guest_cannot_store_a_restaurant()
+    public function test_a_guest_cannot_store()
     {
         $response = $this->post($this->storePage);
 
         $response->assertRedirect();
     }
 
-    public function test_a_non_admin_user_cannot_store_a_restaurant()
+    public function test_a_non_admin_user_cannot_store()
     {
         $user = User::factory()->create();
         $user->assignRole('client');
