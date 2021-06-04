@@ -41,8 +41,14 @@ class OptionCategoryController extends Controller
         return view('admin.restaurant.options-category.edit', compact('restaurant', 'optionCategory'));
     }
 
-    public function update(OptionCategoryRequest $request, Restaurant $restaurant, OptionCategory $optionCategory)
-    {
+    public function update(
+        OptionCategoryRequest $request,
+        Restaurant $restaurant,
+        OptionCategory $optionCategory
+    ): RedirectResponse {
+        $optionCategory->update($request->validated());
+
+        return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
     public function destroy(OptionCategory $optionCategory)

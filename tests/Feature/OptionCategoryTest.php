@@ -64,4 +64,19 @@ class OptionCategoryTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee($category->name);
     }
+
+    public function test_an_admin_can_update_an_option_category()
+    {
+        $this->actAsAdmin();
+        $category = OptionCategory::factory()->create();
+        $inputs   = OptionCategory::factory()->raw();
+
+        $response = $this->put(
+            route('admin.restaurant.option-category.update', [$category->restaurant, $category]),
+            $inputs
+        );
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('option_categories', Arr::except($inputs, 'restaurant_id'));
+    }
 }
