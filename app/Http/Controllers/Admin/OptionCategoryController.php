@@ -26,6 +26,9 @@ class OptionCategoryController extends Controller
 
     public function store(OptionCategoryRequest $request, Restaurant $restaurant)
     {
+        $restaurant->optionCategories()->save(OptionCategory::make($request->validated()));
+
+        return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
     public function show(OptionCategory $optionCategory)
