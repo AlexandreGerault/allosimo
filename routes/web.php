@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::prefix('admin')
     ->as('admin.')
     ->group(
     function () {
+        Route::resource('productCategory', ProductCategoryController::class);
         Route::resource('restaurant.product', ProductController::class);
         Route::resource('restaurant', RestaurantController::class);
     }
