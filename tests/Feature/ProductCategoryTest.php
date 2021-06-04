@@ -29,6 +29,17 @@ class ProductCategoryTest extends TestCase
         $this->assertDatabaseHas('product_categories', $inputs);
     }
 
+    public function test_an_admin_can_edit_a_category()
+    {
+        $this->actAsAdmin();
+        $productCategory = ProductCategory::factory()->create();
+
+        $response = $this->get(route('admin.product-category.edit', $productCategory));
+
+        $response->assertSuccessful();
+        $response->assertSee($productCategory->name);
+    }
+
     public function test_an_admin_can_update_a_category()
     {
         $this->actAsAdmin();
