@@ -41,7 +41,13 @@
                 @foreach($products as $product)
                     <div class="flex justify-between">
                         <span>{{ $product->name }}</span>
-                        <span>{{ $product->price }} {{ $product->currency  }}</span>
+                        <div class="flex gap-4">
+                            <span>{{ $product->price }} {{ $product->currency  }}</span>
+                            <a href="{{ route('admin.restaurant.product.edit', [$restaurant, $product]) }}"
+                               class="text-gray-500 hover:text-red-700 transition duration-200">
+                                <x-heroicon-s-pencil class="w-6 h-6"/>
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             @empty
