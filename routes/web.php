@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\OptionCategoryController;
+use App\Http\Controllers\Admin\OptionCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
