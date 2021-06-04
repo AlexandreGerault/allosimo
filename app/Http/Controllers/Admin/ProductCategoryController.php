@@ -15,6 +15,9 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
+        $categories = ProductCategory::query()->withCount('products')->simplePaginate(25);
+
+        return view('admin.category.index')->with('categories', $categories);
     }
 
     public function create()
