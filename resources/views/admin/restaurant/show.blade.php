@@ -89,8 +89,16 @@
                         <ul>
                             @foreach($category->options as $option)
                                 <li class="flex gap-8 justify-between">
-                                    <span>{{ $option->name }}</span>
-                                    <span>{{ $option->price }} DH</span>
+                                    <div>{{ $option->name }}</div>
+                                    <div class="flex gap-2">
+                                        <div>
+                                            {{ $option->price }} DH
+                                        </div>
+                                        <a href="{{ route('admin.restaurant.option-category.option.edit', [$restaurant, $category, $option]) }}"
+                                           class="text-gray-800 hover:text-red-800 transition duration-200">
+                                            <x-heroicon-s-pencil class="w-6 h-6"/>
+                                        </a>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>
