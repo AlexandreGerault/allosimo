@@ -7,7 +7,6 @@ use App\Http\Requests\ProductCategoryRequest;
 use App\Models\ProductCategory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
 {
@@ -32,7 +31,7 @@ class ProductCategoryController extends Controller
     {
         ProductCategory::create($request->validated());
 
-        return redirect()->route('admin.productCategory.index');
+        return redirect()->route('admin.product-category.index');
     }
 
     public function show(ProductCategory $productCategory)
@@ -41,10 +40,13 @@ class ProductCategoryController extends Controller
 
     public function edit(ProductCategory $productCategory)
     {
+
     }
 
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(ProductCategoryRequest $request, ProductCategory $productCategory): RedirectResponse
     {
+        $productCategory->update($request->validated());
+        return redirect()->route('admin.product-category.index');
     }
 
     public function destroy(ProductCategory $productCategory)

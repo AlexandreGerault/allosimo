@@ -9,7 +9,7 @@
 
     <x-container class="mt-12">
         <div class="flex justify-center">
-            <x-button-link href="{{ route('admin.productCategory.index') }}">
+            <x-button-link href="{{ route('admin.product-category.index') }}">
                 Revenir à la liste des catégories
             </x-button-link>
         </div>
@@ -22,6 +22,6 @@
             Ajout d&apos;une catégorie
         </x-slot>
 
-        <x-product-category-form :action="route('admin.productCategory.store')" submit="Ajouter une catégorie"/>
+        <x-product-category-form :action="route('admin.product-category.store')" submit="Ajouter une catégorie"/>
     </x-dashboard-section>
 </x-app-layout>
