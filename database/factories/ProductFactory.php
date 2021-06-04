@@ -24,4 +24,9 @@ class ProductFactory extends Factory
     {
         return $this->state(['restaurant_id' => $restaurant->id]);
     }
+
+    public function category(ProductCategory $category): ProductFactory
+    {
+        return $this->state(['product_category_id' => $category->id]);
+    }
 }
