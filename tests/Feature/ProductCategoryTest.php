@@ -23,7 +23,7 @@ class ProductCategoryTest extends TestCase
         $this->actAsAdmin();
         $inputs = ProductCategory::factory()->raw();
 
-        $response = $this->post($this->storePage);
+        $response = $this->post($this->storePage, $inputs);
 
         $response->assertRedirect();
         $this->assertDatabaseHas('product_categories', $inputs);
