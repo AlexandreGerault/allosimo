@@ -43,5 +43,8 @@ class DatabaseSeeder extends Seeder
             ]
         );
         $admin->assignRole('client');
+
+        $this->call(ProductCategorySeeder::class);
+        $this->call(RestaurantSeeder::class);
     }
 }
