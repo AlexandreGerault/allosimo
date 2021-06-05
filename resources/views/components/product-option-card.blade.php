@@ -5,7 +5,8 @@
         <x-heroicon-s-plus-circle class="w-6 h-6 hover:text-gray-700 transition duration-200 ease-in-out cursor-pointer"/>
     </x-slot>
     <x-slot name="content">
-        <form class="px-6 py-4">
+        <form class="px-6 py-4" method="POST" action="{{ route('cart.add', $product) }}">
+            @csrf
             @if($product->options()->count() > 0)
             <div>
                 <p class="font-bold mb-2">Options</p>
@@ -16,7 +17,7 @@
                     <div class="flex flex-col gap-2">
                         @foreach($options as $option)
                             <x-label class="flex gap-1 items-center">
-                                <input type="checkbox"/>
+                                <input type="checkbox" value="{{ $option->id }}" name="options[]" />
                                 {{ $option->name }}
                             </x-label>
                         @endforeach
