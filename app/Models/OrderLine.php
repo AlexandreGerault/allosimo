@@ -20,4 +20,9 @@ class OrderLine extends Model
     {
         return $this->belongsToMany(Option::class);
     }
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
