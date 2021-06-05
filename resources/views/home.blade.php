@@ -3,7 +3,7 @@
 
         <section class="py-12">
             <x-container>
-                <div class="mb-6 pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+                <div class="mb-6 pb-5 px-4 sm:px-0 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
                     <h3 class="text-2xl leading-6 font-medium text-gray-900">
                         Restaurants Mohammédia
                     </h3>
