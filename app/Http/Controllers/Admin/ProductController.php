@@ -23,7 +23,10 @@ class ProductController extends Controller
 
     public function create(Restaurant $restaurant): View
     {
-        return view('admin.restaurant.products.create', compact('restaurant'));
+        $restaurant->load('optionCategories.options');
+        $optionsCategories = $restaurant->optionCategories;
+
+        return view('admin.restaurant.products.create', compact('restaurant', 'optionsCategories'));
     }
 
     public function store(ProductRequest $request, Restaurant $restaurant): RedirectResponse
@@ -31,6 +34,7 @@ class ProductController extends Controller
         $product = Product::make($request->validated());
         $product->category()->associate(ProductCategory::query()->findOrFail($request->get('category')));
         $restaurant->products()->save($product);
+        $product->options()->sync($request->get('options'));
 
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
@@ -41,13 +45,17 @@ class ProductController extends Controller
 
     public function edit(Restaurant $restaurant, Product $product): View
     {
-        return view('admin.restaurant.products.edit', compact('restaurant', 'product'));
+        $restaurant->load('optionCategories.options');
+        $optionsCategories = $restaurant->optionCategories;
+
+        return view('admin.restaurant.products.edit', compact('restaurant', 'product', 'optionsCategories'));
     }
 
-    public function update(ProductRequest $request, Restaurant $restaurant, Product $product)
+    public function update(ProductRequest $request, Restaurant $restaurant, Product $product): RedirectResponse
     {
         $product->category()->associate(ProductCategory::query()->findOrFail($request->get('category')));
         $product->update($request->validated());
+        $product->options()->sync($request->get('options'));
 
         return redirect()->route('admin.restaurant.show', $restaurant);
     }

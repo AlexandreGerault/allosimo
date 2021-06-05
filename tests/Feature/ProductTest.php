@@ -2,9 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Option;
+use App\Models\OptionCategory;
 use App\Models\Product;
 use App\Models\Restaurant;
-use App\Models\User;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
 use Tests\Traits\HasAdminAreas;
@@ -48,6 +49,30 @@ class ProductTest extends TestCase
 
         $response->assertSessionDoesntHaveErrors();
         $response->assertRedirect();
+        $this->assertDatabaseHas('products', Arr::except($inputs, 'restaurant_id'));
+    }
+
+    public function test_an_admin_can_store_a_product_with_options()
+    {
+        $this->withoutExceptionHandling();
+        $this->actAsAdmin();
+        $options = Option::factory()
+                         ->for(OptionCategory::factory()->for($this->restaurant), 'category')
+                         ->count(3)
+                         ->create()
+                         ->pluck('id')
+                         ->toArray();
+        $inputs  = Product::factory()->raw();
+
+        $response = $this->post(
+            route('admin.restaurant.product.store', ['restaurant' => $this->restaurant]),
+            $inputs + ['category' => $inputs['product_category_id']] + ['options' => $options]
+        );
+
+        $product = Product::query()->first();
+        $response->assertSessionDoesntHaveErrors();
+        $response->assertRedirect();
+        $this->assertCount(3, $product->options);
         $this->assertDatabaseHas('products', Arr::except($inputs, 'restaurant_id'));
     }
 

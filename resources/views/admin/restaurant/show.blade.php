@@ -42,6 +42,7 @@
                     <div class="flex justify-between">
                         <span>{{ $product->name }}</span>
                         <div class="flex gap-4">
+                            <span>{{ $product->options_count }} options</span>
                             <span>{{ $product->price }} {{ $product->currency  }}</span>
                             <a href="{{ route('admin.restaurant.product.edit', [$restaurant, $product]) }}"
                                class="text-gray-500 hover:text-red-700 transition duration-200">
