@@ -23,7 +23,10 @@ class ProductController extends Controller
 
     public function create(Restaurant $restaurant): View
     {
-        return view('admin.restaurant.products.create', compact('restaurant'));
+        $restaurant->load('optionCategories.options');
+        $optionsCategories = $restaurant->optionCategories;
+
+        return view('admin.restaurant.products.create', compact('restaurant', 'optionsCategories'));
     }
 
     public function store(ProductRequest $request, Restaurant $restaurant): RedirectResponse
@@ -41,7 +44,10 @@ class ProductController extends Controller
 
     public function edit(Restaurant $restaurant, Product $product): View
     {
-        return view('admin.restaurant.products.edit', compact('restaurant', 'product'));
+        $restaurant->load('optionCategories.options');
+        $optionsCategories = $restaurant->optionCategories;
+
+        return view('admin.restaurant.products.edit', compact('restaurant', 'product', 'optionsCategories'));
     }
 
     public function update(ProductRequest $request, Restaurant $restaurant, Product $product)
