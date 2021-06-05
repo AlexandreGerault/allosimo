@@ -22,7 +22,7 @@
     <x-container>
         <div class="py-12">
             <div class="flex flex-col-reverse sm:flex-row gap-8">
-                <div class="w-full sm:w-2/3 flex flex-col gap-8">
+                <div class="w-full sm:w-3/5 flex flex-col gap-8">
                     <div>
                         <p class="text-3xl px-4 sm:px-0">Restaurant Menu</p>
                     </div>
