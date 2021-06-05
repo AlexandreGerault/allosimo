@@ -30,6 +30,7 @@ Route::get(
 )->middleware(['auth'])->name('dashboard');
 
 Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
+Route::post("/cart/remove", [CartController::class, 'remove'])->name('cart.remove');
 
 Route::prefix('admin')
     ->middleware('auth')
