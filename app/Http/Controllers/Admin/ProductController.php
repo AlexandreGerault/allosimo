@@ -34,7 +34,7 @@ class ProductController extends Controller
         $product = Product::make($request->validated());
         $product->category()->associate(ProductCategory::query()->findOrFail($request->get('category')));
         $restaurant->products()->save($product);
-        $product->options()->attach($request->get('options'));
+        $product->options()->sync($request->get('options'));
 
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
@@ -55,7 +55,7 @@ class ProductController extends Controller
     {
         $product->category()->associate(ProductCategory::query()->findOrFail($request->get('category')));
         $product->update($request->validated());
-        $product->options()->attach($request->get('options'));
+        $product->options()->sync($request->get('options'));
 
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
