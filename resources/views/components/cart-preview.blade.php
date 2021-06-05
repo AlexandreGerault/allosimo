@@ -47,7 +47,10 @@
         </p>
     </div>
 
-    <x-button-link>
-        Commander maintenant
-    </x-button-link>
+    <form action="{{ route('order') }}" method="POST">
+        @csrf
+        <x-button>
+            Commander maintenant
+        </x-button>
+    </form>
 </div>
