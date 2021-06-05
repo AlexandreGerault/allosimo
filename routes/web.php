@@ -41,4 +41,6 @@ Route::prefix('admin')
     }
 );
 
+Route::resource('restaurant', \App\Http\Controllers\RestaurantController::class)->only('show');
+
 require __DIR__ . '/auth.php';
