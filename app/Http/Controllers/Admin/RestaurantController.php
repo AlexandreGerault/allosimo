@@ -42,7 +42,7 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         $restaurant->load(['products', 'optionCategories']);
-        $categories = $restaurant->products->groupBy(fn ($item) => $item->category->name)->all();
+        $categories = $restaurant->products()->withCount('options')->get()->groupBy(fn ($item) => $item->category->name)->all();
         $optionCategories = $restaurant->optionCategories;
         return view('admin.restaurant.show', compact('restaurant', 'categories', 'optionCategories'));
     }
