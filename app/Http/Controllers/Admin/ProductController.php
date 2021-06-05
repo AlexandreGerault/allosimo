@@ -51,7 +51,7 @@ class ProductController extends Controller
         return view('admin.restaurant.products.edit', compact('restaurant', 'product', 'optionsCategories'));
     }
 
-    public function update(ProductRequest $request, Restaurant $restaurant, Product $product)
+    public function update(ProductRequest $request, Restaurant $restaurant, Product $product): RedirectResponse
     {
         $product->category()->associate(ProductCategory::query()->findOrFail($request->get('category')));
         $product->update($request->validated());
