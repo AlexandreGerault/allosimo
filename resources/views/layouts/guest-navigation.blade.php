@@ -71,6 +71,13 @@
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
+                    @else
+                        <x-guest-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                            Connexion
+                        </x-guest-nav-link>
+                        <x-guest-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                            Inscription
+                        </x-guest-nav-link>
                     @endauth
                 </div>
             </div>

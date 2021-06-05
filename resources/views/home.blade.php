@@ -46,5 +46,16 @@
                 </div>
             </x-container>
         </section>
+
+        <div class="py-12 bg-red-700 text-white">
+            <x-container>
+                <p class="uppercase font-semibold">Android App</p>
+                <p class="text-3xl font-bold mt-4">Téléchargez notre application mobile "Allo Simo"</p>
+                <p class="text-2xl">Disponible pour <strong>Android</strong></p>
+                <x-button-link href="#" color="green" class="text-white mt-4">
+                    Télécharger
+                </x-button-link>
+            </x-container>
+        </div>
     </div>
 </x-guest-layout>
