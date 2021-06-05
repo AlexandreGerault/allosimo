@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Option;
+use App\Models\Order;
 use App\Models\OrderLine;
 use App\Models\Product;
 use Tests\TestCase;
@@ -23,5 +24,14 @@ class OrderLineModelTest extends TestCase
         $line    = OrderLine::factory()->for($product)->has(Option::factory())->create();
 
         $this->assertInstanceOf(Option::class, $line->options->first());
+    }
+
+    public function test_it_belongs_to_an_order()
+    {
+        $options = Option::factory()->count(4);
+        $product = Product::factory()->has($options);
+        $line    = OrderLine::factory()->for($product)->has(Option::factory())->create();
+
+        $this->assertInstanceOf(Order::class, $line->order);
     }
 }
