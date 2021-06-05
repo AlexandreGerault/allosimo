@@ -15,12 +15,13 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name'     => ['required', 'string', 'unique:products,name'],
-            'price'    => ['required', 'numeric', 'min:0'],
-            'category' => ['required', 'exists:product_categories,id']
+            'name'      => ['required', 'string', 'unique:products,name'],
+            'price'     => ['required', 'numeric', 'min:0'],
+            'category'  => ['required', 'exists:product_categories,id'],
+            'options.*' => [Rule::exists('options', 'id')->whereIn('option_category_id', $this->restaurant->optionCategories()->pluck('id')->toArray())]
         ];
 
-        if($this->isMethod("PUT")) {
+        if ($this->isMethod("PUT")) {
             $rules['name'] = [
                 'required',
                 'string',
