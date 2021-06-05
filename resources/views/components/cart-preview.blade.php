@@ -1,6 +1,6 @@
 @inject('cart', 'App\Services\Cart')
 @php
-$cart->load();
+    $cart->load();
 @endphp
 
 <div class="px-6 py-4 bg-white shadow rounded overflow-hidden">
@@ -10,11 +10,20 @@ $cart->load();
         @foreach($cart->all() as $line)
             <div class="my-1">
                 <div class="flex gap-4 justify-between">
-                    <span>{{ $line->product()->name }}</span>
+                    <div class="flex gap-2 items-center">
+                        <form method="POST" class="h-full flex items-center" action="{{ route('cart.remove') }}">
+                            @csrf
+                            <input type="hidden" value="{{ array_search($line, $cart->all()) }}" name="line"/>
+                            <button class="outline-none focus:outline-none ">
+                                <x-heroicon-o-x-circle class="text-red-500 w-6 h-6"/>
+                            </button>
+                        </form>
+                        <span>{{ $line->product()->name }}</span>
+                    </div>
                     <span>{{ $line->amount() }} x {{ $line->product()->price }} DH</span>
                 </div>
                 @if ($line->options()->count() > 0)
-                    <ul class="pl-8 w-full">
+                    <ul class="pl-12 w-full">
                         @foreach($line->options() as $option)
                             <li class="flex gap-2 justify-between">
                                 <span>{{ $option->name }}</span>
