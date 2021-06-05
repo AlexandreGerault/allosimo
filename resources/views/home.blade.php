@@ -1,5 +1,18 @@
 <x-guest-layout>
     <div>
+        <div style="height: 36rem">
+            <div class="relative w-full h-full">
+                <div class="absolute w-full h-full">
+                    <img src="{{ asset('img/hero_home.jpg') }}" alt="" class="w-full h-full object-cover"/>
+                </div>
+                <div class="absolute w-full h-full bg-black opacity-60">
+                </div>
+                <div class="relative w-full h-full flex items-center justify-center flex-col gap-4 text-white">
+                    <p class="text-5xl font-bold">Allo Simo - Livraison Mohammédia</p>
+                    <p class="text-3xl">La livraison c'est nous, le chef c'est vous !</p>
+                </div>
+            </div>
+        </div>
 
         <section class="py-12">
             <x-container>
