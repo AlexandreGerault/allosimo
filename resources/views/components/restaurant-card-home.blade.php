@@ -1,7 +1,7 @@
 @props(['restaurant'])
 
-<article class="bg-white rounded-lg shadow overflow-hidden">
-    <div class="flex flex-col sm:flex-row gap-4 w-full">
+<article>
+    <div class="flex flex-col sm:flex-row gap-4 w-full bg-white rounded-lg shadow overflow-hidden">
         <div class="w-full sm:w-72">
             <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" class="w-full h-full object-cover"/>
         </div>
@@ -42,7 +42,7 @@
                 </div>
             </header>
 
-            <p>{{ $restaurant->description }}</p>
+            {{--<p>{{ $restaurant->description }}</p>--}}
         </div>
     </div>
 </article>
