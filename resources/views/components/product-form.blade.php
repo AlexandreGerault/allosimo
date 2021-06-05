@@ -45,7 +45,7 @@
                 @foreach($category->options as $option)
                     <x-label>
                         <div class="flex gap-2">
-                            <input type="checkbox"/>
+                            <input type="checkbox" name="options[]" value="{{ $option->id }}" @if($product->options->pluck('id')->contains($option->id)) checked @endif />
                             <span>{{ $option->name }}</span>
                         </div>
                     </x-label>
