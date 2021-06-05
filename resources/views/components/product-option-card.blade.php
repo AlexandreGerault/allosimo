@@ -18,7 +18,8 @@
                         @foreach($options as $option)
                             <x-label class="flex gap-1 items-center">
                                 <input type="checkbox" value="{{ $option->id }}" name="options[]" />
-                                {{ $option->name }}
+                                <span>{{ $option->name }}</span>
+                                <span>{{ $option->price }} DH</span>
                             </x-label>
                         @endforeach
                     </div>
