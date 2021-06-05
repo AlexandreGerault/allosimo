@@ -34,6 +34,11 @@ class Cart
         session()->put('cart', $this);
     }
 
+    public function removeLine(int $index)
+    {
+        unset($this->lines[$index]);
+    }
+
     public function subTotal(): int
     {
         return array_reduce(
