@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OptionCategoryController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::get(
     }
 )->middleware(['auth'])->name('dashboard');
 
+Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
+
 Route::prefix('admin')
     ->middleware('auth')
     ->as('admin.')
@@ -40,5 +43,7 @@ Route::prefix('admin')
         Route::resource('restaurant', RestaurantController::class);
     }
 );
+
+Route::resource('restaurant', \App\Http\Controllers\RestaurantController::class)->only('show');
 
 require __DIR__ . '/auth.php';

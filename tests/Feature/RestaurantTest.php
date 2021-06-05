@@ -89,4 +89,14 @@ class RestaurantTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseHas('restaurants', $inputs);
     }
+
+    public function test_a_guest_can_show_restaurant_page()
+    {
+        $restaurant = Restaurant::factory()->create();
+
+        $response = $this->get(route('restaurant.show', $restaurant));
+
+        $response->assertSuccessful();
+        $response->assertSee($restaurant->name);
+    }
 }

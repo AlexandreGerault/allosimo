@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Option;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Restaurant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -24,5 +25,12 @@ class ProductModelTest extends TestCase
 
         $this->assertCount(3, $product->options);
         $this->assertInstanceOf(Option::class, $product->options->first());
+    }
+
+    public function test_it_belongs_to_a_restaurant()
+    {
+        $product = Product::factory()->create();
+
+        $this->assertInstanceOf(Restaurant::class, $product->restaurant);
     }
 }

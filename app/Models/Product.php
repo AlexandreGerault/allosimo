@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Option::class);
     }
+
+    public function restaurant(): BelongsTo
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }

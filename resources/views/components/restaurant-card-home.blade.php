@@ -10,7 +10,7 @@
                 <div class="flex items-start justify-between">
                     <div class="flex flex-col gap-1">
                         <div class="flex flex-col md:flex-row md:items-center gap-2">
-                            <a href="{{ route('admin.restaurant.show', $restaurant) }}">
+                            <a href="{{ route('restaurant.show', $restaurant) }}">
                                 <p class="text-lg">{{ $restaurant->name }}</p>
                             </a>
 
