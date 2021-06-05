@@ -17,10 +17,11 @@ class CartController extends Controller
 
     public function add(AddProductCartRequest $request, Product $product): RedirectResponse
     {
+        $this->cart->load();
         $this->cart->add(
             new CartLine(
                 $product,
-                Option::query()->whereIn('id', $request->get('options'))->get(),
+                Option::query()->whereIn('id', $request->get('options', []))->get(),
                 $request->get('quantity')
             )
         );
