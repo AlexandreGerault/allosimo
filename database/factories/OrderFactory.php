@@ -7,22 +7,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Order::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'state' => $this->faker->randomElement(Order::STATES)
         ];
     }
 }
