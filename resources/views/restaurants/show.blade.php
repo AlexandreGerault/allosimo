@@ -3,6 +3,22 @@
         Commander chez {{ $restaurant->name }}
     </x-slot>
 
+    <div class="h-96">
+        <div class="relative w-full h-full">
+            <div class="absolute w-full h-full">
+                <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" alt="" class="w-full h-full object-cover"/>
+            </div>
+            <div class="absolute w-full h-full bg-black opacity-60">
+            </div>
+            <div class="relative w-full h-full flex items-end">
+                <x-container class="w-full py-6">
+                    <p class="text-4xl text-white mb-4">{{ $restaurant->name }}</p>
+                    <p class="text-2xl text-white">{{ (float) $restaurant->stars / 2.0 }} / 5</p>
+                </x-container>
+            </div>
+        </div>
+    </div>
+
     <x-container>
         <div class="py-12">
             <div class="flex flex-col-reverse sm:flex-row gap-8">
@@ -31,8 +47,8 @@
                     </div>
                 </div>
 
-                <div>
-                    Aperçu du panier
+                <div class="flex-grow">
+                    <x-cart-preview/>
                 </div>
             </div>
         </div>
