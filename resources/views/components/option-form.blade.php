@@ -18,7 +18,7 @@
 
     <!-- Price -->
     <div>
-        <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="MAD"
+        <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="DH"
                        :value="old('price') ?? $option->price"
                        label="Price" aria-describedby="price"/>
     </div>
