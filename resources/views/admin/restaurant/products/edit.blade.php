@@ -18,7 +18,9 @@
 
         <x-validation-errors class="mb-4" :errors="$errors"/>
 
-        <x-product-form :action="route('admin.restaurant.product.update', [$restaurant, $product])" method="PUT" :product="$product"
+        <x-product-form :action="route('admin.restaurant.product.update', [$restaurant, $product])" method="PUT"
+                        :product="$product"
+                        :categories="$optionsCategories"
                         submit="Modifier"/>
     </x-dashboard-section>
 </x-app-layout>

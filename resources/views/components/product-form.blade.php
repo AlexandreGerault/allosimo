@@ -1,4 +1,4 @@
-@props(['action', 'product' => new \App\Models\Product(), 'submit', 'method' => 'POST'])
+@props(['action', 'product' => new \App\Models\Product(), 'submit', 'method' => 'POST', 'categories'])
 
 <form class="flex flex-col gap-4 mt-6" method="post" action="{{ $action }}" enctype="multipart/form-data">
 @if($method === "PUT")
@@ -18,7 +18,7 @@
 
     <!-- Price -->
     <div>
-        <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="MAD"
+        <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="DH"
                        :value="old('price') ?? $product->price"
                        label="Price" aria-describedby="price"/>
     </div>
@@ -36,6 +36,23 @@
             @endforeach
         </x-select>
     </div>
+
+    @foreach($categories as $category)
+        <div class="bg-white rounded-lg shadow-md px-6 py-4">
+            <p class="text-xl font-semibold">{{ $category->name }}</p>
+
+            <div class="flex flex-col gap-2 mt-4">
+                @foreach($category->options as $option)
+                    <x-label>
+                        <div class="flex gap-2">
+                            <input type="checkbox"/>
+                            <span>{{ $option->name }}</span>
+                        </div>
+                    </x-label>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
 
     <div>
         <x-button class="mt-4">
