@@ -22,7 +22,11 @@ class RegenerateImagesCommand extends Command
 
     public function handle()
     {
-        $restaurants = Restaurant::query()->where('image', '=', 'null')->get();
+        $restaurants = Restaurant::query()
+                                 ->where('image', '=', 'null')
+                                 ->orWhereNull('image')
+                                 ->orWhere('image', '=', '')
+                                 ->get();
 
         foreach ($restaurants as $restaurant) {
             foreach (self::IMAGE_EXT as $ext) {
@@ -33,7 +37,11 @@ class RegenerateImagesCommand extends Command
             }
         }
 
-        $products = Product::query()->where('image', '=', 'null')->get();
+        $products = Product::query()
+                           ->where('image', '=', 'null')
+                           ->orWhereNull('image')
+                           ->orWhere('image', '=', '')
+                           ->get();
 
         foreach ($products as $product) {
             foreach (self::IMAGE_EXT as $ext) {
@@ -41,6 +49,10 @@ class RegenerateImagesCommand extends Command
                     $product->image = $product->name . '.' . $ext;
                     $product->save();
                 }
+            }
+            if ($product->image === null || $product->image === '') {
+                $product->image = 'null';
+                $product->save();
             }
         }
 
