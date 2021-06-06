@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Restaurant;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -59,8 +60,14 @@ class ProductController extends Controller
         $product->update($request->validated());
         $product->options()->sync($request->get('options'));
         if ($request->hasFile('image')) {
+            $oldPath = 'restaurant/' . $restaurant->name . '/products/' . $product->image;
+            if (Storage::exists($oldPath)) {
+                Storage::delete($oldPath);
+            }
+            $product->image = $product->name . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('restaurant/' . $restaurant->name . '/products', $product->image);
         }
+        $product->save();
 
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
