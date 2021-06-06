@@ -14,7 +14,7 @@ class AddProductImageColumn extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('image')->default(null);
+            $table->string('image')->default('null');
         });
     }
 
