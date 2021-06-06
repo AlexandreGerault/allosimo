@@ -43,7 +43,11 @@
         </p>
         <p class="flex justify-between">
             <span>Frais de livraison :</span>
-            <span>10 DH</span>
+            <span>15 DH</span>
+        </p>
+
+        <p class="flex justify-end gap-2 text-xl font-bold">
+            Total : {{ $cart->subTotal() + 15 }} DH
         </p>
     </div>
 
