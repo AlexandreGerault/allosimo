@@ -47,11 +47,11 @@ class RegenerateImagesCommand extends Command
                            ->get();
 
         foreach ($products as $product) {
-            $this->info('Looking picture for product ' . $restaurant->name);
+            $this->info('Looking picture for product ' . $product->restaurant->name);
             foreach (self::IMAGE_EXT as $ext) {
                 $this->info('Look for ' . $ext . ' images');
-                if (Storage::exists('public/restaurants/'.$restaurant->name.'/products/' . $product->name . '.' .$ext)) {
-                    $this->info('Found ' . $restaurant->name.'/products/' . $product->name . '.' .$ext);
+                if (Storage::exists('public/restaurants/'.$product->restaurant->name.'/products/' . $product->name . '.' .$ext)) {
+                    $this->info('Found ' . $product->restaurant->name.'/products/' . $product->name . '.' .$ext);
                     $product->image = $product->name . '.' . $ext;
                     $product->save();
                 }
