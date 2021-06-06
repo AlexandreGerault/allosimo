@@ -34,7 +34,10 @@ class RestaurantController extends Controller
             'public/restaurants',
             "{$request->name}.{$logoFile->getClientOriginalExtension()}"
         );
-        Restaurant::create($request->except('logo'));
+        $restaurant = Restaurant::create($request->except('logo'));
+        $restaurant->image = "{$request->name}.{$logoFile->getClientOriginalExtension()}";
+        $restaurant->save();
+
 
         return redirect()->route('admin.restaurant.index');
     }
@@ -60,6 +63,8 @@ class RestaurantController extends Controller
                 'public/restaurants',
                 "{$request->name}.{$logoFile->getClientOriginalExtension()}"
             );
+            $restaurant->image = "{$request->name}.{$logoFile->getClientOriginalExtension()}";
+            $restaurant->save();
         }
         $restaurant->update($request->except('logo'));
 

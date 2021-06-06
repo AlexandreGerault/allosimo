@@ -3,7 +3,7 @@
 <article>
     <div class="flex flex-col sm:flex-row gap-4 w-full bg-white rounded-lg shadow overflow-hidden">
         <div class="w-full sm:w-72">
-            <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" class="w-full h-full object-cover"/>
+            <img src="{{ Storage::url('restaurants/' . $restaurant->image) }}" class="w-full h-full object-cover"/>
         </div>
         <div class="px-6 py-4 w-full">
             <header class="flex flex-col gap-4 mb-4">

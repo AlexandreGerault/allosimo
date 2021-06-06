@@ -6,7 +6,7 @@
     <div class="h-96">
         <div class="relative w-full h-full">
             <div class="absolute w-full h-full">
-                <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" alt=""
+                <img src="{{ Storage::url('restaurants/' . $restaurant->image) }}" alt=""
                      class="w-full h-full object-cover"/>
             </div>
             <div class="absolute w-full h-full bg-black opacity-60">
