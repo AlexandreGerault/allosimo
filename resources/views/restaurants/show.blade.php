@@ -6,7 +6,8 @@
     <div class="h-96">
         <div class="relative w-full h-full">
             <div class="absolute w-full h-full">
-                <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" alt="" class="w-full h-full object-cover"/>
+                <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" alt=""
+                     class="w-full h-full object-cover"/>
             </div>
             <div class="absolute w-full h-full bg-black opacity-60">
             </div>
@@ -27,8 +28,8 @@
                         <p class="text-3xl px-4 sm:px-0">Restaurant Menu</p>
                     </div>
 
-                    <div class="px-6 py-4 bg-white shadow">
-                        @foreach($categories as $category => $products)
+                    @foreach($categories as $category => $products)
+                        <div class="px-6 py-4 bg-white shadow">
                             <p class="font-bold text-xl mb-6">{{ $category }}</p>
 
                             <div class="flex flex-col gap-4">
@@ -38,13 +39,13 @@
                                         <div class="flex gap-4">
                                             <span>{{ $product->price }} DH</span>
 
-                                            <x-product-option-card :product="$product" />
+                                            <x-product-option-card :product="$product"/>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="flex-grow">
