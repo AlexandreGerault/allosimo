@@ -66,7 +66,7 @@
             Créer une catégorie d'options pour ce restaurant
         </x-button-link>
 
-        <div class="flex gap-4 mt-6">
+        <div class="grid md:grid-cols-2 gap-4 mt-6">
             @foreach($optionCategories as $category)
                 <div class="px-6 py-4 bg-white shadow-md rounded-lg text-gray-800">
                     <div class="flex gap-2 justify-between mb-6">
