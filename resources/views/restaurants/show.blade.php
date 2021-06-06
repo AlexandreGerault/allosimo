@@ -35,6 +35,7 @@
                             <div class="flex flex-col gap-4">
                                 @foreach($products as $product)
                                     <div class="flex justify-between items-center">
+                                        <img src="{{ Storage::url('restaurants/'. $restaurant->name . '/products/' . $product->image) }}" alt="" class="w-24 h-24" />
                                         <span>{{ $product->name }}</span>
                                         <div class="flex gap-4">
                                             <span>{{ $product->price }} DH</span>

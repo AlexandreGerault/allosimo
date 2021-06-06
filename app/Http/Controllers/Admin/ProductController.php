@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $product->image = $product->name . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('restaurant/' . $restaurant->name . '/products', $product->image);
+            $request->file('image')->storeAs('public/restaurants/' . $restaurant->name . '/products', $product->image);
         }
 
         return redirect()->route('admin.restaurant.show', $restaurant);
@@ -63,12 +63,12 @@ class ProductController extends Controller
         $product->update($request->validated());
         $product->options()->sync($request->get('options'));
         if ($request->hasFile('image')) {
-            $oldPath = 'restaurant/' . $restaurant->name . '/products/' . $product->image;
+            $oldPath = 'public/restaurants/' . $restaurant->name . '/products/' . $product->image;
             if (Storage::exists($oldPath)) {
                 Storage::delete($oldPath);
             }
             $product->image = $product->name . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('restaurant/' . $restaurant->name . '/products', $product->image);
+            $request->file('image')->storeAs('public/restaurants/' . $restaurant->name . '/products', $product->image);
         }
         $product->save();
 

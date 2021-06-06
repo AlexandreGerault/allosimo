@@ -32,8 +32,7 @@
                     <div class="text-base font-bold mb-2">
                         Quantité
                     </div>
-                    <x-input type="number" name="quantity"
-                             class="block w-full"/>
+                    <x-input type="number" name="quantity" class="block w-full"/>
                 </x-label>
             </div>
 
