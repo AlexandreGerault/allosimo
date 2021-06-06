@@ -1,6 +1,6 @@
 @props(['product'])
 
-<x-dropdown :width="72" :auto-close="false">
+<x-dropdown :width="60" :auto-close="false">
     <x-slot name="trigger">
         <x-heroicon-s-plus-circle class="w-6 h-6 hover:text-gray-700 transition duration-200 ease-in-out cursor-pointer"/>
     </x-slot>
