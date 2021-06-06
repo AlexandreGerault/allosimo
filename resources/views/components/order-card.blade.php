@@ -9,7 +9,7 @@
                 </a>
 
                 <div class="text-white w-8 h-8">
-                    {{ $order->price }} DH
+                    {{ $order->price + 15 }} DH
                 </div>
             </div>
 
