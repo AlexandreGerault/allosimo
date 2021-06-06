@@ -7,7 +7,7 @@
                 </div>
                 <div class="absolute w-full h-full bg-black opacity-60">
                 </div>
-                <div class="relative w-full h-full flex items-center justify-center flex-col gap-4 text-white">
+                <div class="relative w-full h-full flex items-center justify-center flex-col gap-4 text-white px-4 sm:px-0">
                     <p class="text-5xl font-bold">Allo Simo - Livraison Mohammédia</p>
                     <p class="text-3xl">La livraison c'est nous, le chef c'est vous !</p>
                 </div>
@@ -39,7 +39,7 @@
 
         <section class="py-12">
             <x-container>
-                <div class="mb-6 pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+                <div class="mb-6 pb-5 px-4 sm:px-0 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
                     <h3 class="text-2xl leading-6 font-medium text-gray-900">
                         Boulangeries et pâtisseries Mohammédia
                     </h3>
@@ -50,18 +50,18 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 px-4 sm:px-0">
                     @forelse($bakeries as $restaurant)
                         <x-restaurant-card-home :restaurant="$restaurant"/>
                     @empty
-                        <p>Il n'y a pour le moment aucune boulangerie pour Mohammédia</p>
+                        <p class="col-span-2">Il n'y a pour le moment aucune boulangerie pour Mohammédia</p>
                     @endforelse
                 </div>
             </x-container>
         </section>
 
         <div class="py-12 bg-red-700 text-white">
-            <x-container>
+            <x-container class="px-4 sm:px-0">
                 <p class="uppercase font-semibold">Android App</p>
                 <p class="text-3xl font-bold mt-4">Téléchargez notre application mobile "Allo Simo"</p>
                 <p class="text-2xl">Disponible pour <strong>Android</strong></p>
