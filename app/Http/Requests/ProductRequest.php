@@ -18,7 +18,15 @@ class ProductRequest extends FormRequest
             'name'      => ['required', 'string', 'unique:products,name'],
             'price'     => ['required', 'numeric', 'min:0'],
             'category'  => ['required', 'exists:product_categories,id'],
-            'options.*' => [Rule::exists('options', 'id')->whereIn('option_category_id', $this->restaurant->optionCategories()->pluck('id')->toArray())]
+            'image'     => ['sometimes', 'image', 'max:1024'],
+            'options.*' => [
+                Rule::exists('options', 'id')->whereIn(
+                    'option_category_id',
+                    $this->restaurant->optionCategories()->pluck(
+                        'id'
+                    )->toArray()
+                )
+            ]
         ];
 
         if ($this->isMethod("PUT")) {
