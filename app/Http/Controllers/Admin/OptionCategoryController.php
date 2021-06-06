@@ -51,7 +51,9 @@ class OptionCategoryController extends Controller
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
-    public function destroy(OptionCategory $optionCategory)
+    public function destroy(Restaurant $restaurant, OptionCategory $optionCategory): RedirectResponse
     {
+        $optionCategory->delete();
+        return redirect()->route('admin.restaurant.show', $restaurant);
     }
 }
