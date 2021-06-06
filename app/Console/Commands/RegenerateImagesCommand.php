@@ -13,7 +13,7 @@ class RegenerateImagesCommand extends Command
 
     protected $description = 'Regenerate images';
 
-    const IMAGE_EXT = ['.png', '.jpg'];
+    const IMAGE_EXT = ['png', 'jpg'];
 
     public function __construct()
     {
