@@ -20,7 +20,7 @@
     <div>
         <x-input-price class="block mt-1 w-full" id="price" name="price" currency="" currencyText="DH"
                        :value="old('price') ?? $product->price"
-                       label="Price" aria-describedby="price"/>
+                       label="Prix" aria-describedby="price"/>
     </div>
 
     <!-- Category -->
@@ -35,6 +35,17 @@
                 </option>
             @endforeach
         </x-select>
+    </div>
+
+    <!-- Logo -->
+    <div>
+        <x-label for="image" value="Image"/>
+        @if($method === "POST")
+            <x-input id="image" class="block mt-1 w-full rounded-none" type="file" name="image" :value="old('image')"
+                     required/>
+        @else
+            <x-input id="image" class="block mt-1 w-full rounded-none" type="file" name="image" :value="old('image')"/>
+        @endif
     </div>
 
     @foreach($categories as $category)
