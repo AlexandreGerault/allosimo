@@ -17,7 +17,7 @@
         </x-slot>
 
         <div class="flex gap-4">
-            <img src="{{ Storage::url('restaurants/' . $restaurant->name . '.png') }}" alt="Not loaded"
+            <img src="{{ Storage::url('restaurants/' . $restaurant->image) }}" alt="Not loaded"
                  class="block w-24 h-24"/>
             <div class="mt-4">
                 <p class="text-gray-900 font-semibold">{{ $restaurant->name }}</p>
