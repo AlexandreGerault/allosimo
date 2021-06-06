@@ -15,7 +15,11 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name'      => ['required', 'string', 'unique:products,name'],
+            'name'      => [
+                'required',
+                'string',
+                Rule::unique('products', 'name')->where('restaurant_id', $this->restaurant->id)
+            ],
             'price'     => ['required', 'numeric', 'min:0'],
             'category'  => ['required', 'exists:product_categories,id'],
             'image'     => ['sometimes', 'image', 'max:1024'],
@@ -33,7 +37,9 @@ class ProductRequest extends FormRequest
             $rules['name'] = [
                 'required',
                 'string',
-                Rule::unique('products')->ignoreModel($this->route('product'))
+                Rule::unique('products')
+                    ->where('restaurant_id', $this->restaurant->id)
+                    ->ignoreModel($this->route('product'))
             ];
         }
 
