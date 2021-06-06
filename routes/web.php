@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OptionCategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,12 +32,14 @@ Route::get(
 
 Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
 Route::post("/cart/remove", [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
 
 Route::prefix('admin')
     ->middleware('auth')
     ->as('admin.')
     ->group(
     function () {
+        Route::resource('orders', \App\Http\Controllers\Admin\OrderController::class);
         Route::resource('product-category', ProductCategoryController::class);
         Route::resource('restaurant.option-category.option', OptionController::class);
         Route::resource('restaurant.option-category', OptionCategoryController::class);

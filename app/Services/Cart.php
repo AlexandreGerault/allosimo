@@ -7,6 +7,7 @@ use App\Models\Option;
 
 class Cart
 {
+    /** @var CartLine[] */
     protected array $lines;
 
     public function __construct(?array $lines = null)
@@ -37,6 +38,11 @@ class Cart
     public function removeLine(int $index)
     {
         unset($this->lines[$index]);
+    }
+
+    public function flush()
+    {
+        session()->forget('cart');
     }
 
     public function subTotal(): int
