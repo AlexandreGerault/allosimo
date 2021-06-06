@@ -25,4 +25,12 @@ class OrderLine extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function getPriceAttribute()
+    {
+        return $this->product->price * $this->quantity + $this->options->reduce(
+                fn(int $acc, Option $option) => $acc + $option->price * $this->quantity,
+                0
+            );
+    }
 }

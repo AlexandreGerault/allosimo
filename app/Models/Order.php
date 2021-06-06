@@ -24,4 +24,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderLine::class);
     }
+
+    public function getPriceAttribute()
+    {
+        return $this->lines->reduce(fn (int $acc, OrderLine $line) => $acc + $line->price, 0);
+    }
 }
