@@ -8,7 +8,7 @@
         <div class="score"><strong>{{ $restaurant->stars }}</strong></div>
         <em>{{ $restaurant->town }}</em>
         <h3>{{ $restaurant->name }}</h3>
-        <small>8 Patriot Square E2 9NF</small>
+        <small>{{ $restaurant->state === 'open' ? 'Ouvert' : 'Fermé'}}</small>
     </div>
 </a>
 
