@@ -6,7 +6,7 @@
             class="w-6 h-6 hover:text-gray-700 transition duration-200 ease-in-out cursor-pointer"/>
     </x-slot>
     <x-slot name="content">
-        <form class="px-6 py-4 h-72 overflow-y-auto" method="POST" action="{{ route('cart.add', $product) }}">
+        <form class="px-6 py-4 max-h-72 overflow-y-auto" method="POST" action="{{ route('cart.add', $product) }}">
             @csrf
             @if($product->options()->count() > 0)
                 <div>
