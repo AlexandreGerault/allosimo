@@ -49,12 +49,9 @@
                                                     @foreach($products as $product)
                                                         <div class="menu_item thumbs">
                                                             <figure>
-                                                                <a href="img/menu_item_large_1.jpg" title="Photo title"
-                                                                   data-effect="mfp-zoom-in">
-                                                                    <img
-                                                                        src="{{ $product?->image === 'null' ? asset('img/default_product.png') : Storage::url('restaurants/'. $restaurant->name . '/products/' . $product->image) }}"
-                                                                        alt="" class="lazy">
-                                                                </a>
+                                                                <img
+                                                                    src="{{ $product?->image === 'null' ? asset('img/default_product.png') : Storage::url('restaurants/'. $restaurant->name . '/products/' . $product->image) }}"
+                                                                    alt="" class="lazy">
                                                             </figure>
                                                             <div class="flex justify-between">
                                                                 <h4>{{ $product->name }}</h4>
@@ -69,7 +66,7 @@
                                             </div>
 
                                             @if ($category !== $categories->keys()->last())
-                                                <hr />
+                                                <hr/>
                                             @endif
                                         @endforeach
                                     </div>
@@ -84,7 +81,7 @@
                 <!-- /col -->
 
                 <div class="col-lg-4" id="sidebar_fixed">
-                    <x-cart-preview />
+                    <x-cart-preview/>
                 </div>
 
             </div>
