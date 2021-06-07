@@ -8,7 +8,11 @@
         <div class="score"><strong>{{ $restaurant->stars }}</strong></div>
         <em>{{ $restaurant->town }}</em>
         <h3>{{ $restaurant->name }}</h3>
-        <small>{{ $restaurant->state === 'open' ? 'Ouvert' : 'Fermé'}}</small>
+        <small>
+            <x-badge class="{{ $restaurant->state === 'open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                {{ $restaurant->state === 'open' ? 'Ouvert' : 'Fermé' }}
+            </x-badge>
+        </small>
     </div>
 </a>
 
