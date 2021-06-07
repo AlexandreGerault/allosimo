@@ -31,6 +31,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/common_func.js') }}" defer></script>
+        <script src="{{ asset('js/sticky_sidebar.js') }}" defer></script>
     </head>
     <body>
     @include('layouts.guest-navigation')

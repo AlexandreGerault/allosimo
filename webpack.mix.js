@@ -13,6 +13,7 @@ const fs = require('fs');
 
 mix
     .js('resources/js/common_func.js', 'public/js')
+    .js('resources/js/sticky_sidebar.js', 'public/js')
     .js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
