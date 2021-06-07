@@ -26,7 +26,6 @@
                         <span><em></em></span>
                         <h2>Restaurants</h2>
                         <p>Restaurants disponibles à Mohammédia.</p>
-                        {{--<a href="#0">Voir tous</a>--}}
                     </div>
                 </div>
                 <div class="col-12">
@@ -41,11 +40,6 @@
                     </div>
                 </div>
             </div>
-            <p class="text-center block lg:hidden my-6">
-                <a href="grid-listing-filterscol.html" class="btn_1">
-                    Voir tous
-                </a>
-            </p>
             <!-- /button visibile on tablet/mobile only -->
         </div>
         <!-- /container -->
@@ -57,7 +51,6 @@
                         <span><em></em></span>
                         <h2>Boulangeries-Pâtisseries</h2>
                         <p>Boulangeries-pâtisseries disponibles à Mohammédia.</p>
-                        {{--<a href="#0">Voir tous</a>--}}
                     </div>
                 </div>
                 <div class="col-12">
@@ -72,11 +65,6 @@
                     </div>
                 </div>
             </div>
-            <p class="text-center block lg:hidden my-6">
-                <a href="grid-listing-filterscol.html" class="btn_1">
-                    Voir tous
-                </a>
-            </p>
             <!-- /button visibile on tablet/mobile only -->
         </div>
         <!-- /container -->
