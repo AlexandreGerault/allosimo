@@ -4,7 +4,7 @@
 @endphp
 
 <div class="px-6 py-4 bg-white shadow rounded overflow-hidden">
-    <p class="text-2xl font-semibold mb-4">Panier</p>
+    <p class="text-2xl font-semibold mb-4 text-center">Panier</p>
 
     <div class="flex flex-col gap-2 my-6">
         @foreach($cart->all() as $line)
@@ -51,7 +51,7 @@
         </p>
     </div>
 
-    <form action="{{ route('order') }}" method="POST">
+    <form action="{{ route('order') }}" method="POST" class="flex justify-center">
         @csrf
         <x-button>
             Commander maintenant

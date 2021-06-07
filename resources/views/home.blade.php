@@ -1,74 +1,86 @@
 <x-guest-layout>
-    <div>
-        <div style="height: 36rem">
-            <div class="relative w-full h-full">
-                <div class="absolute w-full h-full">
-                    <img src="{{ asset('img/hero_home.jpg') }}" alt="" class="w-full h-full object-cover"/>
-                </div>
-                <div class="absolute w-full h-full bg-black opacity-60">
-                </div>
-                <div class="relative w-full h-full flex items-center justify-center flex-col gap-4 text-white px-4 sm:px-0">
-                    <p class="text-5xl font-bold">Allo Simo - Livraison Mohammédia</p>
-                    <p class="text-3xl">La livraison c'est nous, le chef c'est vous !</p>
+    <x-slot name="css">
+        <link href="{{ asset('css/template/home.css') }}" rel="stylesheet">
+    </x-slot>
+
+    <main>
+        <div class="hero_single version_2">
+            <div class="opacity-mask bg-black bg-opacity-50" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-9 col-lg-10 col-md-8">
+                            <h1>Allo Simo - Livraison Mohammédia</h1>
+                            <p>La livraison c'est nous, le chef c'est vous !</p>
+                        </div>
+                    </div>
+                    <!-- /row -->
                 </div>
             </div>
         </div>
+        <!-- /hero_single -->
 
-        <section class="py-12">
-            <x-container>
-                <div class="mb-6 pb-5 px-4 sm:px-0 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
-                    <h3 class="text-2xl leading-6 font-medium text-gray-900">
-                        Restaurants Mohammédia
-                    </h3>
-                    <div class="mt-3 sm:mt-0 sm:ml-4">
-                        <a href="#" class="text-sm font-bold text-red-800">
-                            Voir tous
-                        </a>
+        <div class="container margin_60_40">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main_title version_2">
+                        <span><em></em></span>
+                        <h2>Restaurants</h2>
+                        <p>Restaurants disponibles à Mohammédia.</p>
+                        {{--<a href="#0">Voir tous</a>--}}
                     </div>
                 </div>
-
-                <div class="grid lg:grid-cols-2 gap-4 px-4 sm:px-0">
-                    @forelse($restaurants as $restaurant)
-                        <x-restaurant-card-home :restaurant="$restaurant"/>
-                    @empty
-                        <p>Il n'y a pour le moment aucun restaurant pour Mohammédia</p>
-                    @endforelse
-                </div>
-            </x-container>
-        </section>
-
-        <section class="py-12">
-            <x-container>
-                <div class="mb-6 pb-5 px-4 sm:px-0 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
-                    <h3 class="text-2xl leading-6 font-medium text-gray-900">
-                        Boulangeries et pâtisseries Mohammédia
-                    </h3>
-                    <div class="mt-3 sm:mt-0 sm:ml-4">
-                        <a href="#" class="text-sm font-bold text-red-800">
-                            Voir tous
-                        </a>
+                <div class="col-12">
+                    <div class="list_home">
+                        <ul class="grid sm:grid-cols-2 gap-4 my-4">
+                            @foreach($restaurants as $restaurant)
+                                <li>
+                                    <x-restaurant-card-home :restaurant="$restaurant"/>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-2 gap-4 px-4 sm:px-0">
-                    @forelse($bakeries as $restaurant)
-                        <x-restaurant-card-home :restaurant="$restaurant"/>
-                    @empty
-                        <p class="col-span-2">Il n'y a pour le moment aucune boulangerie pour Mohammédia</p>
-                    @endforelse
-                </div>
-            </x-container>
-        </section>
-
-        <div class="py-12 bg-red-700 text-white">
-            <x-container class="px-4 sm:px-0">
-                <p class="uppercase font-semibold">Android App</p>
-                <p class="text-3xl font-bold mt-4">Téléchargez notre application mobile "Allo Simo"</p>
-                <p class="text-2xl">Disponible pour <strong>Android</strong></p>
-                <x-button-link href="#" color="green" class="text-white mt-4">
-                    Télécharger
-                </x-button-link>
-            </x-container>
+            </div>
+            <p class="text-center block lg:hidden my-6">
+                <a href="grid-listing-filterscol.html" class="btn_1">
+                    Voir tous
+                </a>
+            </p>
+            <!-- /button visibile on tablet/mobile only -->
         </div>
-    </div>
+        <!-- /container -->
+
+        <div class="container margin_60_40">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main_title version_2">
+                        <span><em></em></span>
+                        <h2>Boulangeries-Pâtisseries</h2>
+                        <p>Boulangeries-pâtisseries disponibles à Mohammédia.</p>
+                        {{--<a href="#0">Voir tous</a>--}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="list_home">
+                        <ul class="grid sm:grid-cols-2 gap-4 my-4">
+                            @foreach($bakeries as $restaurant)
+                                <li>
+                                    <x-restaurant-card-home :restaurant="$restaurant"/>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center block lg:hidden my-6">
+                <a href="grid-listing-filterscol.html" class="btn_1">
+                    Voir tous
+                </a>
+            </p>
+            <!-- /button visibile on tablet/mobile only -->
+        </div>
+        <!-- /container -->
+
+    </main>
+    <!-- /main -->
 </x-guest-layout>

@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+const fs = require('fs');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -16,3 +16,7 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+mix.sass('resources/css/template/all.scss', 'public/css/template.css')
+mix.sass('resources/css/template/home.scss', 'public/css/template/home.css')
+

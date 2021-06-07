@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Response;
 
 class HomeController extends Controller
 {
-    public function __invoke(): View
+    public function __invoke()
     {
         $restaurants = Restaurant::query()
                                  ->where('type', '=', 'restaurant')

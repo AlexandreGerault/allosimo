@@ -1,4 +1,7 @@
 <x-guest-layout>
+    <x-slot name="css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    </x-slot>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

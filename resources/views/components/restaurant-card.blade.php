@@ -1,7 +1,7 @@
 @props(['restaurant'])
 
-<article class="bg-gray-800 rounded-lg overflow-hidden">
-    <div class="px-6 py-4">
+<article class="bg-gray-800 rounded-lg overflow-hidden flex flex-col">
+    <div class="px-6 py-4 flex-grow">
         <header class="mb-4">
             <div class="flex items-start justify-between">
 
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <x-badge color="{{ $restaurant->state === 'open' ? 'green' : 'red' }}">
+            <x-badge class="{{ $restaurant->state === 'open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                 {{ $restaurant->state === 'open' ? 'Ouvert' : 'Fermé' }}
             </x-badge>
         </header>

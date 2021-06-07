@@ -1,12 +1,12 @@
 @props(['product'])
 
-<x-dropdown :width="60" :auto-close="false">
+<x-dropdown width="w-64" :auto-close="false">
     <x-slot name="trigger">
-        <x-heroicon-s-plus-circle
+        <x-heroicon-s-plus
             class="w-6 h-6 hover:text-gray-700 transition duration-200 ease-in-out cursor-pointer"/>
     </x-slot>
     <x-slot name="content">
-        <form class="px-6 py-4" method="POST" action="{{ route('cart.add', $product) }}">
+        <form class="px-6 py-4 h-72 overflow-y-auto" method="POST" action="{{ route('cart.add', $product) }}">
             @csrf
             @if($product->options()->count() > 0)
                 <div>
@@ -36,7 +36,7 @@
 
             <div class="my-6">
                 <x-label>
-                    <div class="text-base font-bold mb-2">
+                    <div class="font-bold mb-2">
                         Quantité
                     </div>
                     <x-input type="number" name="quantity" class="block w-full" value="1"/>

@@ -12,7 +12,7 @@
             @forelse($orders as $order)
                 <x-order-card :order="$order" />
             @empty
-                <p>Aucun restaurant enregistré pour le moment.</p>
+                <p>Aucune livraison en cours pour le moment.</p>
             @endforelse
         </div>
 
