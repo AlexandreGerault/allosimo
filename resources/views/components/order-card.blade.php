@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <x-badge color="{{ $order->state === 'confirmed' ? 'green' : 'red' }}">
+            <x-badge class="{{ $order->state === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                 {{ $order->state === 'confirmed' ? 'Confirmée' : 'Annulée' }}
             </x-badge>
         </header>
