@@ -20,7 +20,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
         <!-- BASE CSS -->
-        <link href="{{ asset('css/template/bootstrap_customized.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/template/bootstrap_customized.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/template.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
