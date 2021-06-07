@@ -1,7 +1,7 @@
 <header class="header clearfix element_to_stick">
     <div class="container">
         <div class="h-10" id="logo">
-            <a href="{{ route('dashboard') }}" class="block">
+            <a href="{{ route('home') }}" class="block">
                 <x-application-logo class="block h-10 w-auto fill-current" />
             </a>
         </div>
