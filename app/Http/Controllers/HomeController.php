@@ -14,13 +14,11 @@ class HomeController extends Controller
                                  ->where('type', '=', 'restaurant')
                                  ->where('town', '=', 'Mohammédia')
                                  ->latest()
-                                 ->limit(6)
                                  ->get();
         $bakeries    = Restaurant::query()
                                  ->where('type', '=', 'bakery')
                                  ->where('town', '=', 'Mohammédia')
                                  ->latest()
-                                 ->limit(6)
                                  ->get();
 
         return view('home')->with('restaurants', $restaurants)->with('bakeries', $bakeries);
