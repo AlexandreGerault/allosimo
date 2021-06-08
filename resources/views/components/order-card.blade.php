@@ -19,7 +19,7 @@
         </header>
 
         <div class="my-2">
-            <p class="text-white">Commandé chez : {{ $order->lines->first()->product->restaurant->name }}</p>
+            <p class="text-white">Commandé chez : {{ $order?->lines?->first()?->product?->restaurant?->name }}</p>
             <hr class="my-4" />
             <p class="font-semibold text-lg text-gray-50">Informations client</p>
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
