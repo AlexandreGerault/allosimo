@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request): View|RedirectResponse
     {
+        if (! auth()->user()->hasRole(['administrateur', 'livreur'])) {
+            return redirect()->route('home');
+        }
+
         $turnover = Order::query()
                          ->withTrashed()
                          ->whereDate('deleted_at', '>', Carbon::now()->subDays(30)->toDateString())

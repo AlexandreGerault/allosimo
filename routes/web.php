@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', HomeController::class)->name('home');
@@ -39,6 +38,7 @@ Route::prefix('admin')
     ->as('admin.')
     ->group(
     function () {
+        Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
         Route::resource('delivery-guys', DeliveryGuyController::class);
         Route::resource('orders.delivery-guys', OrderDeliveryGuyController::class)->only('store');
         Route::resource('orders', \App\Http\Controllers\Admin\OrderController::class);

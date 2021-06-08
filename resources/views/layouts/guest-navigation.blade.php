@@ -22,7 +22,7 @@
                 </li>
                 @auth
                     @if(auth()->user()->hasRole('administrateur'))
-                        <li><a href="{{ route('dashboard') }}">Administration</a></li>
+                        <li><a href="{{ route('admin.dashboard') }}">Administration</a></li>
                     @endif
                     <li>
                         <form action="{{ route('logout') }}" method="POST">

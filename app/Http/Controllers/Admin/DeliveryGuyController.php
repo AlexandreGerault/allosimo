@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DeliveryGuyController extends Controller
 {
@@ -35,7 +36,7 @@ class DeliveryGuyController extends Controller
 
     public function store(DeliveryGuyRequest $request): RedirectResponse
     {
-        $user = User::create($request->all());
+        $user = User::create($request->all() + ['password' => Hash::make($request->get('password'))]);
         $user->assignRole('livreur');
 
         return redirect()->route('admin.delivery-guys.index');
