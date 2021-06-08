@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
 
 Route::get(
     '/dashboard',
@@ -30,9 +29,12 @@ Route::get(
     }
 )->middleware(['auth'])->name('dashboard');
 
-Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
-Route::post("/cart/remove", [CartController::class, 'remove'])->name('cart.remove');
-Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
+Route::middleware('auth')->group(function () {
+    Route::get('/', HomeController::class)->name('home');
+    Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
+    Route::post("/cart/remove", [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
+});
 
 Route::prefix('admin')
     ->middleware('auth')

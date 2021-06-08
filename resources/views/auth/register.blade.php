@@ -77,5 +77,13 @@
                 </x-button>
             </div>
         </form>
+
+        <hr class="my-6" />
+
+        <div class="flex justify-center">
+            <x-button-link href="{{ route('login') }}">
+                J'ai déjà un compte
+            </x-button-link>
+        </div>
     </x-auth-card>
 </x-guest-layout>
