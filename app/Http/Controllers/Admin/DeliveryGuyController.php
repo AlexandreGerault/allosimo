@@ -15,7 +15,7 @@ class DeliveryGuyController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(User::class, 'delivery-guy');
+        $this->authorizeResource(User::class, 'delivery_guy');
     }
 
     /**
@@ -80,14 +80,11 @@ class DeliveryGuyController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function destroy(User $deliveryGuy)
     {
-        //
+        $deliveryGuy->removeRole('livreur');
+        $deliveryGuy->save();
+
+        return redirect()->route('admin.delivery-guys.index');
     }
 }

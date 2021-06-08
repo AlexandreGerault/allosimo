@@ -20,7 +20,6 @@ class DeliveryGuyTest extends TestCase
 
     public function test_an_admin_can_store_a_delivery_guy()
     {
-        $this->withoutExceptionHandling();
         $this->actAsAdmin();
 
         $inputs   = User::factory()->raw();
@@ -32,5 +31,18 @@ class DeliveryGuyTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseCount('users', 2);
         $this->assertTrue($deliveryGuys->hasRole('livreur'));
+    }
+
+    public function test_an_admin_can_remove_a_user_delivery_guy_role()
+    {
+        $this->actAsAdmin();
+
+        $deliveryGuy = User::factory()->create();
+        $deliveryGuy->assignRole('livreur');
+
+        $response = $this->delete(route('admin.delivery-guys.destroy', ['delivery_guy' => $deliveryGuy]));
+
+        $response->assertRedirect();
+        $this->assertFalse($deliveryGuy->refresh()->hasRole('livreur'));
     }
 }

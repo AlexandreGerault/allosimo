@@ -9,6 +9,12 @@ class DeliveryGuyPolicy
 {
     use HandlesAuthorization;
 
+
+    public function before(User $user, $ability): ?bool
+    {
+        return $user->hasRole('administrateur') ? true : null;
+    }
+
     public function viewAny(User $user): bool
     {
         return $user->hasRole('administrateur');
