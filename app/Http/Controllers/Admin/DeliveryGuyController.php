@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeliveryGuyRequest;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class DeliveryGuyController extends Controller
         $this->authorizeResource(User::class, 'delivery_guy');
     }
 
-    public function index()
+    public function index(): View
     {
         $deliveryGuys = User::query()->whereHas('roles', function ($query) {
             $query->where('name', 'livreur');
@@ -27,14 +28,9 @@ class DeliveryGuyController extends Controller
         return view('admin.delivery-guys.index', compact('deliveryGuys'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.delivery-guys.create');
     }
 
     public function store(DeliveryGuyRequest $request): RedirectResponse
