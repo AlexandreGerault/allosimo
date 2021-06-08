@@ -8,8 +8,8 @@
                     <p class="text-2xl text-white">{{ $order->user->name }}</p>
                 </a>
 
-                <div class="text-white w-8 h-8">
-                    {{ $order->price + 15 }} DH
+                <div class="text-white">
+                    {{ $order->number ?? "Pas de numéro de commande" }}
                 </div>
             </div>
 

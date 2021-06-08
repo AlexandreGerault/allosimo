@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Collections\OrdersCollection;
+use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,13 @@ class Order extends Model
     const STATES = ['confirmed', 'cancelled'];
 
     protected $fillable = ['state'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        Order::observe(OrderObserver::class);
+    }
 
     public function user(): BelongsTo
     {

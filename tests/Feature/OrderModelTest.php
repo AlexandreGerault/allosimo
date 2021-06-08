@@ -20,4 +20,14 @@ class OrderModelTest extends TestCase
         $this->assertInstanceOf(OrderLine::class, $order->lines->first());
         $this->assertCount(3, $order->lines);
     }
+
+    public function test_it_has_an_order_number()
+    {
+        $order = Order::factory()
+                      ->for(User::factory())
+                      ->has(OrderLine::factory()->for(Product::factory())->count(3), 'lines')
+                      ->create();
+
+        $this->assertNotNull($order->number);
+    }
 }
