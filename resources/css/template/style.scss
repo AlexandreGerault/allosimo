@@ -1419,9 +1419,9 @@ header.sticky a.open_close, .header_in a.open_close {
 
 /*First level styles */
 .main-menu > ul > li {
-    > a {
+    > a, > form > a {
         color: #fff;
-        padding: 0 8px 10px  8px;
+        padding: 0 8px 0px  8px;
         @include fontSize(14px);
         font-weight: 500;
     }
@@ -1429,10 +1429,10 @@ header.sticky a.open_close, .header_in a.open_close {
 }
 
 header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li{
-		>a {
+		>a, > form > a {
 			color: #444;
 		}
-		&:hover>a {
+		&:hover>a, &:hover > form > a {
 			opacity: 1;
 			color: $color-1;
 		}

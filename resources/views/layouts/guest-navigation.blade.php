@@ -1,5 +1,5 @@
-<header class="header clearfix element_to_stick bg-black bg-opacity-70" x-data="{ open: false }">
-    <div class="container">
+<header class="header clearfix element_to_stick flex" x-data="{ open: false }">
+    <div class="container flex justify-between items-center">
         <div class="h-10" id="logo">
             <a href="{{ route('home') }}" class="block">
                 <x-application-logo class="block h-10 w-auto fill-current mx-auto" />
@@ -27,7 +27,7 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <a href="{{ route('logout') }}" class="text-white hover:text-gray-200 focus:text-gray-200"
+                            <a href="{{ route('logout') }}"
                                onclick="event.preventDefault(); this.closest('form').submit();">
                                 Déconnexion
                             </a>
