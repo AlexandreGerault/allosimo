@@ -27,6 +27,10 @@
                     <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
                         Livraisons
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.delivery-guys.index')" :active="request()->routeIs('admin.delivery-guys.*')">
+                        Livreurs
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -89,6 +93,10 @@
 
             <x-responsive-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
                 Livraisons
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('admin.delivery-guys.index')" :active="request()->routeIs('admin.delivery-guys.*')">
+                Livreurs
             </x-responsive-nav-link>
         </div>
 
