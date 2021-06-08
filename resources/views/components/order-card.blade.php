@@ -13,7 +13,8 @@
                 </div>
             </div>
 
-            <x-badge class="{{ $order->state === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+            <x-badge
+                class="{{ $order->state === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                 {{ $order->state === 'confirmed' ? 'Confirmée' : 'Annulée' }}
             </x-badge>
         </header>
@@ -23,59 +24,61 @@
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
 
-            <hr class="my-4" />
+            <hr class="my-4"/>
 
             <div class="flex flex-col gap-6 mt-6">
                 @foreach($restaurants = $order->lines->groupedByRestaurant() as $restaurantName => $lines)
                     <p class="text-white">Commandé chez : {{ $restaurantName }}</p>
                     @foreach($lines as $index => $line)
-                    <div class="bg-gray-50 rounded overflow-hidden px-6 py-4">
-                        <div class="flex gap-4">
-                            <div>
-                                {{ $line->quantity }}
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex gap-4 justify-between">
-                                    <div>
-                                        {{ $line->product->name }}
-                                    </div>
-                                    <div>
-                                        {{ $line->product->price }} DH
-                                    </div>
+                        <div class="bg-gray-50 rounded overflow-hidden px-6 py-4">
+                            <div class="flex gap-4">
+                                <div>
+                                    {{ $line->quantity }}
                                 </div>
-                                <div class="pl-6">
-                                    @foreach($line->options as $option)
-                                        <div class="flex justify-between">
-                                            <div>{{ $option->name }}</div>
-                                            <div>{{ $option->price }} DH</div>
+                                <div class="flex-grow">
+                                    <div class="flex gap-4 justify-between">
+                                        <div>
+                                            {{ $line->product->name }}
                                         </div>
-                                    @endforeach
+                                        <div>
+                                            {{ $line->product->price }} DH
+                                        </div>
+                                    </div>
+                                    <div class="pl-6">
+                                        @foreach($line->options as $option)
+                                            <div class="flex justify-between">
+                                                <div>{{ $option->name }}</div>
+                                                <div>{{ $option->price }} DH</div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="flex justify-end mt-2 font-semibold">
-                            Total : {{ $line->price }} DH
+                            <div class="flex justify-end mt-2 font-semibold">
+                                Total : {{ $line->price }} DH
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                     @if ($restaurants->keys()->last() !== $restaurantName)
-                        <hr class="my-6" />
+                        <hr class="my-6"/>
                     @endif
                 @endforeach
                 <div class="flex justify-end mx-4 text-xl font-bold mt-6 text-white">
                     Total : {{ $order->price + 15 }} DH
                 </div>
-                <form
-                    action="{{ route('admin.orders.destroy', $order) }}"
-                    method="POST"
-                    class="text-gray-800 hover:text-red-800 transition duration-200">
-                    @method("DELETE")
-                    @csrf
-                    <x-button>
-                        Supprimer cette commande
-                    </x-button>
-                </form>
+                @can('delete', $order)
+                    <form
+                        action="{{ route('admin.orders.destroy', $order) }}"
+                        method="POST"
+                        class="text-gray-800 hover:text-red-800 transition duration-200">
+                        @method("DELETE")
+                        @csrf
+                        <x-button>
+                            Supprimer cette commande
+                        </x-button>
+                    </form>
+                @endcan
             </div>
         </div>
     </div>

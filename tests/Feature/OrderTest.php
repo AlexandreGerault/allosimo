@@ -71,4 +71,17 @@ class OrderTest extends TestCase
 
         $response->assertSuccessful();
     }
+
+    public function test_a_delivery_guys_can_show_its_orders()
+    {
+        $this->withoutExceptionHandling();
+        $deliveryGuy = User::factory()->create();
+        $deliveryGuy->assignRole('livreur');
+        Order::factory()->for($deliveryGuy)->count(5)->create();
+        $this->actingAs($deliveryGuy);
+
+        $response = $this->get(route('admin.orders.index'));
+
+        $response->assertSuccessful();
+    }
 }

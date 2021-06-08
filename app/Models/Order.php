@@ -27,6 +27,11 @@ class Order extends Model
         return $this->hasMany(OrderLine::class);
     }
 
+    public function deliveryGuy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'delivery_guy_id');
+    }
+
     public function getPriceAttribute()
     {
         return $this->lines->reduce(fn (int $acc, OrderLine $line) => $acc + $line->price, 0);

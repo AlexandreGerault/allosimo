@@ -12,7 +12,7 @@ class OrderPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('administrateur');
+        return $user->hasRole('administrateur') || $user->hasRole('livreur');
     }
 
     public function view(User $user, Order $order): bool
