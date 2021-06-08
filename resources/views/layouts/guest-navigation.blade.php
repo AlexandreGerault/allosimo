@@ -27,10 +27,9 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); this.closest('form').submit();">
+                            <x-button>
                                 Déconnexion
-                            </a>
+                            </x-button>
                         </form>
                     </li>
                 @endauth
