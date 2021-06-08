@@ -19,14 +19,16 @@
         </header>
 
         <div class="my-2">
-            <p class="text-white">Commandé chez : {{ $order?->lines?->first()?->product?->restaurant?->name }}</p>
-            <hr class="my-4" />
             <p class="font-semibold text-lg text-gray-50">Informations client</p>
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
 
+            <hr class="my-4" />
+
             <div class="flex flex-col gap-6 mt-6">
-                @foreach($order->lines as $line)
+                @foreach($restaurants = $order->lines->groupBy(fn (\App\Models\OrderLine $order_line) => $order_line->product->restaurant->name) as $restaurantName => $lines)
+                    <p class="text-white">Commandé chez : {{ $restaurantName }}</p>
+                    @foreach($lines as $index => $line)
                     <div class="bg-gray-50 rounded overflow-hidden px-6 py-4">
                         <div class="flex gap-4">
                             <div>
@@ -56,6 +58,10 @@
                             Total : {{ $line->price }} DH
                         </div>
                     </div>
+                    @endforeach
+                    @if ($restaurants->keys()->last() !== $restaurantName)
+                        <hr class="my-6" />
+                    @endif
                 @endforeach
                 <div class="flex justify-end mx-4 text-xl font-bold mt-6 text-white">
                     Total : {{ $order->price + 15 }} DH
