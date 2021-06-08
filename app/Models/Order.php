@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Collections\OrdersCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,5 +29,10 @@ class Order extends Model
     public function getPriceAttribute()
     {
         return $this->lines->reduce(fn (int $acc, OrderLine $line) => $acc + $line->price, 0);
+    }
+
+    public function newCollection(array $models = []): OrdersCollection
+    {
+        return new OrdersCollection($models);
     }
 }

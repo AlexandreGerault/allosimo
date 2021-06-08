@@ -26,7 +26,7 @@
             <hr class="my-4" />
 
             <div class="flex flex-col gap-6 mt-6">
-                @foreach($restaurants = $order->lines->groupBy(fn (\App\Models\OrderLine $order_line) => $order_line->product->restaurant->name) as $restaurantName => $lines)
+                @foreach($restaurants = $order->lines->groupedByRestaurant() as $restaurantName => $lines)
                     <p class="text-white">Commandé chez : {{ $restaurantName }}</p>
                     @foreach($lines as $index => $line)
                     <div class="bg-gray-50 rounded overflow-hidden px-6 py-4">

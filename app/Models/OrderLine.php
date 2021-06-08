@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Collections\OrderLinesCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,5 +33,10 @@ class OrderLine extends Model
                 fn(int $acc, Option $option) => $acc + $option->price * $this->quantity,
                 0
             );
+    }
+
+    public function newCollection(array $models = []): OrderLinesCollection
+    {
+        return new OrderLinesCollection($models);
     }
 }
