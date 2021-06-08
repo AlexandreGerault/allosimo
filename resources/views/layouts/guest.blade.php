@@ -31,10 +31,6 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-
-        <script src="{{ asset('js/common_func.js') }}"></script>
-        <script src="{{ asset('js/common_scripts.js') }}"></script>
-        <script src="{{ asset('js/wizard/jquery.validate.js') }}"></script>
     </head>
     <body>
     @include('layouts.guest-navigation')
