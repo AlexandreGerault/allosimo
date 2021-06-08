@@ -18,14 +18,13 @@ class DeliveryGuyController extends Controller
         $this->authorizeResource(User::class, 'delivery_guy');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $deliveryGuys = User::query()->whereHas('roles', function ($query) {
+            $query->where('name', 'livreur');
+        })->paginate(5);
+
+        return view('admin.delivery-guys.index', compact('deliveryGuys'));
     }
 
     /**
