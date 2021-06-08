@@ -1,4 +1,4 @@
-@props(['order'])
+@props(['order', 'deliveryGuys' => []])
 
 <article class="bg-gray-800 rounded-lg overflow-hidden">
     <div class="px-6 py-4">
@@ -23,6 +23,19 @@
             <p class="font-semibold text-lg text-gray-50">Informations client</p>
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
+
+            @if(auth()->user()->hasRole('administrateur'))
+                <div class="my-4">
+                <p class="font-semibold text-lg text-gray-50">Livreur</p>
+                @if($order?->deliveryGuy)
+                    <p class="text-sm text-gray-50">{{ $order->deliveryGuy->name }}</p>
+                    <p class="text-sm text-gray-50">{{ $order->deliveryGuy->phone }}</p>
+                @else
+                    <p class="text-sm text-gray-50">Aucun livreur sélectionné</p>
+                @endif
+                </div>
+            @endif
+
 
             <hr class="my-4"/>
 
@@ -77,6 +90,24 @@
                         <x-button>
                             Supprimer cette commande
                         </x-button>
+                    </form>
+                @endcan
+
+                @if(auth()->user()->hasRole('administrateur'))
+                    <form action="{{ route('admin.orders.delivery-guys.store', $order) }}" method="POST"
+                          class="flex flex-col gap-2 my-4">
+                        @csrf
+                        <x-select name="delivery_guy_id">
+                            @foreach($deliveryGuys as $guy)
+                                <option value="{{ $guy->id }}"
+                                        @if($order?->deliveryGuy->id === $guy->id) selected @endif>{{ $guy->name }}</option>
+                            @endforeach
+                        </x-select>
+                        <div>
+                            <x-button>
+                                Assigner ce livreur
+                            </x-button>
+                        </div>
                     </form>
                 @endcan
             </div>

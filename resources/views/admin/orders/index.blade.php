@@ -10,7 +10,7 @@
     <x-dashboard-section>
         <div class="grid sm:grid-cols-2 gap-4">
             @forelse($orders as $order)
-                <x-order-card :order="$order" />
+                <x-order-card :order="$order" :deliveryGuys="$deliveryGuys"/>
             @empty
                 <p>Aucune livraison en cours pour le moment.</p>
             @endforelse

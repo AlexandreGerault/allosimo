@@ -84,4 +84,18 @@ class OrderTest extends TestCase
 
         $response->assertSuccessful();
     }
+
+    public function test_an_admin_can_assign_a_delivery_guy_to_an_order()
+    {
+        $this->withoutExceptionHandling();
+        $this->actAsAdmin();
+        $deliveryGuy = User::factory()->create();
+        $deliveryGuy->assignRole('livreur');
+        $order = Order::factory()->for(User::factory())->create();
+
+        $response = $this->post(route('admin.orders.delivery-guys.store', $order), ['delivery_guy_id' => $deliveryGuy->id]);
+
+        $response->assertRedirect();
+        $this->assertEquals($deliveryGuy->id, $order->refresh()->deliveryGuy->id);
+    }
 }

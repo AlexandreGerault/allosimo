@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\RedirectResponse;
@@ -18,6 +19,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $query = Order::query()->with(['lines.product.restaurant', 'lines.product.options']);
+        $deliveryGuys = User::query()->whereHas('roles', fn ($q) => $q->where('name', 'livreur'))->get();
 
         if(auth()->user()->hasRole('livreur') && ! auth()->user()->hasRole('administrateur')) {
             $query->whereHas('deliveryGuy', function ($query) {
@@ -27,7 +29,7 @@ class OrderController extends Controller
 
         $orders = $query->latest()->paginate(60);
 
-        return view('admin.orders.index')->with('orders', $orders);
+        return view('admin.orders.index')->with('orders', $orders)->with('deliveryGuys', $deliveryGuys);
     }
 
     public function show(Order $order): View

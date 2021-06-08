@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DeliveryGuyController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\OrderDeliveryGuyController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
@@ -39,6 +40,7 @@ Route::prefix('admin')
     ->group(
     function () {
         Route::resource('delivery-guys', DeliveryGuyController::class);
+        Route::resource('orders.delivery-guys', OrderDeliveryGuyController::class)->only('store');
         Route::resource('orders', \App\Http\Controllers\Admin\OrderController::class);
         Route::resource('product-category', ProductCategoryController::class);
         Route::resource('restaurant.option-category.option', OptionController::class);
