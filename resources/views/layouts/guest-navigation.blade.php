@@ -1,42 +1,37 @@
-<header class="header clearfix element_to_stick">
+<header class="header clearfix element_to_stick" x-data="{ open: false }">
     <div class="container">
         <div class="h-10" id="logo">
             <a href="{{ route('home') }}" class="block">
-                <x-application-logo class="block h-10 w-auto fill-current" />
+                <x-application-logo class="block h-10 w-auto fill-current mx-auto" />
             </a>
         </div>
         <!-- /top_menu -->
-        <a href="#0" class="open_close">
+        <a href="#0" class="open_close" @click="open = true">
             <i class="icon_menu"></i><span>Menu</span>
         </a>
-        <nav class="main-menu">
+        <nav class="main-menu" :class="{'show': open, '': ! open }">
             <div id="header_menu">
-                <a href="#0" class="open_close">
+                <a href="#0" class="open_close" @click="open = false">
                     <i class="icon_close"></i><span>Menu</span>
                 </a>
-                <a href="index.html"><img src="{{ asset('img/logo.png') }}" width="140" height="35" alt=""></a>
+                <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="140" height="35" alt=""></a>
             </div>
             <ul>
-                <li class="submenu">
+                <li>
                     <a href="{{ route('home') }}" class="show-submenu">Accueil</a>
                 </li>
                 @auth
-                    <li class="submenu">
-                        <a href="#0" class="show-submenu">{{ request()->user()->name }}</a>
-                        <ul>
-                            @if(auth()->user()->hasRole('administrateur'))
-                                <li><a href="{{ route('dashboard') }}">Administration</a></li>
-                            @endif
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); this.closest('form').submit();">
-                                        Déconnexion
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
+                    @if(auth()->user()->hasRole('administrateur'))
+                        <li><a href="{{ route('dashboard') }}">Administration</a></li>
+                    @endif
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); this.closest('form').submit();">
+                                Déconnexion
+                            </a>
+                        </form>
                     </li>
                 @endauth
                 @guest
