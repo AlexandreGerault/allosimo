@@ -55,7 +55,7 @@
                                                             </figure>
                                                             <div class="flex justify-between">
                                                                 <h4>{{ $product->name }}</h4>
-                                                                <em class="flex gap-2">
+                                                                <em class="flex gap-1">
                                                                     <span>{{ $product->price }} DH</span>
                                                                     <x-product-option-card :product="$product"/>
                                                                 </em>
