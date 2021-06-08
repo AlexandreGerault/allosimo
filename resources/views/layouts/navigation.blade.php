@@ -36,6 +36,13 @@
                             Livreurs
                         </x-nav-link>
                     @endif
+
+
+                    @if(auth()->user()->hasRole('livreur'))
+                        <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
+                            Livraisons
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
