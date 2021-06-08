@@ -100,7 +100,7 @@
                         <x-select name="delivery_guy_id">
                             @foreach($deliveryGuys as $guy)
                                 <option value="{{ $guy->id }}"
-                                        @if($order?->deliveryGuy->id === $guy->id) selected @endif>{{ $guy->name }}</option>
+                                        @if($order?->deliveryGuy?->id === $guy->id) selected @endif>{{ $guy->name }}</option>
                             @endforeach
                         </x-select>
                         <div>
