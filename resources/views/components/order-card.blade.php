@@ -54,7 +54,7 @@
                     </div>
                 @endforeach
                 <div class="flex justify-end mx-4 text-xl font-bold mt-6 text-white">
-                    Total : {{ $order->price }} DH
+                    Total : {{ $order->price + 15 }} DH
                 </div>
             </div>
         </div>
