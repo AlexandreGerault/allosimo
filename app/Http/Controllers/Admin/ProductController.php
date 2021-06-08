@@ -75,7 +75,10 @@ class ProductController extends Controller
         return redirect()->route('admin.restaurant.show', $restaurant);
     }
 
-    public function destroy(Product $productCategory)
+    public function destroy(Restaurant $restaurant, Product $product): RedirectResponse
     {
+        $product->delete();
+
+        return redirect()->route('admin.restaurant.show', $restaurant);
     }
 }

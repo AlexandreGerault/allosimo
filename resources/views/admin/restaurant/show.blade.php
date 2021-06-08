@@ -48,6 +48,16 @@
                                class="text-gray-500 hover:text-red-700 transition duration-200">
                                 <x-heroicon-s-pencil class="w-6 h-6"/>
                             </a>
+                            <form
+                                action="{{ route('admin.restaurant.product.destroy', [$restaurant, $product]) }}"
+                                method="POST"
+                                class="text-gray-800 hover:text-red-800 transition duration-200">
+                                @method("DELETE")
+                                @csrf
+                                <button>
+                                    <x-heroicon-s-trash class="w-6 h-6"/>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

@@ -60,6 +60,16 @@
                 <div class="flex justify-end mx-4 text-xl font-bold mt-6 text-white">
                     Total : {{ $order->price + 15 }} DH
                 </div>
+                <form
+                    action="{{ route('admin.orders.destroy', $order) }}"
+                    method="POST"
+                    class="text-gray-800 hover:text-red-800 transition duration-200">
+                    @method("DELETE")
+                    @csrf
+                    <x-button>
+                        Supprimer cette commande
+                    </x-button>
+                </form>
             </div>
         </div>
     </div>
