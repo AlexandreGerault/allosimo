@@ -26,5 +26,9 @@
     "dependencies": {
         "jquery": "^3.6.0",
         "jquery-ui": "^1.12.1"
+    },
+    "volta": {
+        "node": "16.3.0",
+        "yarn": "1.22.10"
     }
 }
