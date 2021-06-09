@@ -7,11 +7,14 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OptionCategoryController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TacosAndPizzasOnlyController;
+use App\Http\Controllers\TacosCharbonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +37,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
 });
 
-Route::get('/tacos-and-pizza-only', TacosAndPizzasOnlyController::class);
+Route::prefix('tacos-and-pizza-only')->as('tacos-pizza-only.')->group(function () {
+    Route::get('/', [TacosAndPizzasOnlyController::class, 'home'])->name('home');
+    Route::get('/tacos', [TacosAndPizzasOnlyController::class, 'tacos'])->name('tacos');
+    Route::get('/pizza', [TacosAndPizzasOnlyController::class, 'pizza'])->name('pizza');
+
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest:tacos-pizza-only');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest:tacos-pizza-only');
+});
+
+Route::prefix('/tacos-charbon')->as('tacos-charbon.')->group(function () {
+    Route::get('/', TacosCharbonController::class)->name('home');
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest:tacos-charbon');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest:tacos-charbon');
+});
+
 
 Route::prefix('admin')
     ->middleware('auth')
