@@ -51,10 +51,12 @@
         </p>
     </div>
 
-    <form action="{{ route('order') }}" method="POST" class="flex justify-center">
-        @csrf
-        <x-button>
-            Commander maintenant
-        </x-button>
-    </form>
+    @if (count($cart->all()) > 0)
+        <form action="{{ route('order') }}" method="POST" class="flex justify-center">
+            @csrf
+            <x-button>
+                Commander maintenant
+            </x-button>
+        </form>
+    @endif
 </div>
