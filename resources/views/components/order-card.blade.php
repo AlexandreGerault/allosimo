@@ -25,7 +25,7 @@
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
 
             <p class="text-sm text-white">
-                {{ $order->created_at->diffForHumans() }} <span class="text-xs">({{ $order->created_at->locale('fr')->translatedFormat('j F Y \à g:i') }})</span>
+                {{ $order->created_at->diffForHumans() }} <span class="text-xs">({{ $order->created_at->setTimezone('Africa/Casablanca')->locale('fr')->translatedFormat('j F Y \à g:i') }})</span>
             </p>
 
             @if(auth()->user()->hasRole('administrateur'))
