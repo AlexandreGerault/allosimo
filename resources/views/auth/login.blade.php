@@ -1,3 +1,16 @@
+@php
+if (request()->routeIs('tacos-pizza-only.*')) {
+    $loginLink = route('tacos-pizza-only.login');
+    $registerLink = route('tacos-pizza-only.register');
+} elseif (request()->routeIs('tacos-charbon.*')) {
+    $loginLink = route('tacos-charbon.login');
+    $registerLink = route('tacos-charbon.register');
+}
+
+$loginLink = $loginLink ?? route('login');
+$registerLink = $registerLink ?? route('register');
+@endphp
+
 <x-guest-layout>
     <x-slot name="title">
         Connexion sur AlloSimo
@@ -36,7 +49,7 @@
                             <button class="btn_1 full-width mb_5">Se connecter</button>
                         </form>
                         <div class="divider"><span>Ou</span></div>
-                        <a href="{{ route('register') }}" class="btn_1 full-width mb_5">S'inscrire</a>
+                        <a href="{{ $registerLink }}" class="btn_1 full-width mb_5">S'inscrire</a>
                     </div>
                 </div>
                 <!-- /box_booking -->

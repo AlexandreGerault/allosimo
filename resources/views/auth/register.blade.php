@@ -1,3 +1,16 @@
+@php
+    if (request()->routeIs('tacos-pizza-only.*')) {
+        $loginLink = route('tacos-pizza-only.login');
+        $registerLink = route('tacos-pizza-only.register');
+    } elseif (request()->routeIs('tacos-charbon.*')) {
+        $loginLink = route('tacos-charbon.login');
+        $registerLink = route('tacos-charbon.register');
+    }
+
+    $loginLink = $loginLink ?? route('login');
+    $registerLink = $registerLink ?? route('register');
+@endphp
+
 <x-guest-layout>
     <x-slot name="title">
         Connexion sur AlloSimo
@@ -56,10 +69,10 @@
                                        name="password_confirmation" required />
                                 <i class="icon_lock"></i>
                             </div>
-                            <button href="confirm.html" class="btn_1 full-width mb_5">S'inscrire</button>
+                            <button class="btn_1 full-width mb_5">S'inscrire</button>
                         </form>
                         <div class="divider"><span>Ou</span></div>
-                        <a href="{{ route('login') }}" class="btn_1 full-width mb_5">Se connecter</a>
+                        <a href="{{ $loginLink }}" class="btn_1 full-width mb_5">Se connecter</a>
                     </div>
                 </div>
                 <!-- /box_booking -->
