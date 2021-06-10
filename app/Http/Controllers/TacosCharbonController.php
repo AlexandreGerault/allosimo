@@ -18,7 +18,7 @@ class TacosCharbonController extends Controller
         $restaurant->load(['products.options.category']);
         $categories = $restaurant->products->groupBy(fn (Product $product) => $product->category->name);
 
-        return view('tacos-charbon.home')
+        return view('restaurants.show')
             ->with('theme', 'tacos-charbon')
             ->with('restaurant', $restaurant)
             ->with('categories', $categories);
