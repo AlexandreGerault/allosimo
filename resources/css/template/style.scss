@@ -1319,7 +1319,7 @@ header {
 		.logo_sticky {
 			display: none;
 		}
-		&.sticky {
+		&.sticky, &.sticky_force {
 			@include transition-default;
 			border-bottom: 1px solid $border-color-2;
 			background-color: #fff;
@@ -1378,7 +1378,7 @@ header a.open_close {
 	}
 }
 
-header.sticky a.open_close, .header_in a.open_close {
+header.sticky a.open_close, header.sticky_force a.open_close, .header_in a.open_close  {
 	color: #444;
 }
 
@@ -2015,7 +2015,7 @@ ul#top_menu {
         }
     }
 
-    &.sticky {
+    &.sticky, &.sticky_force {
         @include mobile {
         	background-color: $color-1;
             width: 100%;
