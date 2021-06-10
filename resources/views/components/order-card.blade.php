@@ -24,7 +24,7 @@
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
 
-            <p class="text-sm text-white">
+            <p class="text-sm text-green-700">
                 {{ $order->created_at->diffForHumans() }} <span class="text-xs">({{ $order->created_at->setTimezone('Africa/Casablanca')->locale('fr')->translatedFormat('j F Y \à g:i') }})</span>
             </p>
 
