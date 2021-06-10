@@ -16,7 +16,10 @@
                 <a href="#0" class="open_close" @click="open = false">
                     <i class="icon_close"></i><span>Menu</span>
                 </a>
-                <a href="{{ route('home') }}"><img src="{{ asset('img/logo.png') }}" width="140" height="35" alt=""></a>
+
+                <a href="{{ route('home') }}">
+                    <x-application-logo class="h-5 mx-auto" />
+                </a>
             </div>
             <ul>
                 <li>
@@ -29,9 +32,9 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <x-button>
+                            <button>
                                 Déconnexion
-                            </x-button>
+                            </button>
                         </form>
                     </li>
                 @endauth

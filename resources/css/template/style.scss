@@ -1419,7 +1419,7 @@ header.sticky a.open_close, header.sticky_force a.open_close, .header_in a.open_
 
 /*First level styles */
 .main-menu > ul > li {
-    > a, > form > a {
+    > a, > form > button {
         color: #fff;
         padding: 0 8px 0px  8px;
         @include fontSize(14px);
@@ -1429,10 +1429,10 @@ header.sticky a.open_close, header.sticky_force a.open_close, .header_in a.open_
 }
 
 header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.header_in .main-menu>ul>li{
-		>a, > form > a {
+		>a, > form > button {
 			color: #444;
 		}
-		&:hover>a, &:hover > form > a {
+		&:hover>a, &:hover > form > button {
 			opacity: 1;
 			color: $color-1;
 		}
@@ -1450,7 +1450,9 @@ header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.he
 .main-menu ul li {display: inline-block;}
 
 .main-menu ul li.submenu:hover > a:before,
-.main-menu ul li.submenu:hover > a:after {bottom: -10px;opacity: 0;}
+.main-menu ul li.submenu:hover > a:after,
+.main-menu ul li.submenu:hover > button:before,
+.main-menu ul li.submenu:hover > button:after{bottom: -10px;opacity: 0;}
 
 /* Submenu*/
 .main-menu ul ul{
@@ -1498,16 +1500,16 @@ header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.he
 		transition-duration: 0s, 0.2s, 0.2s
 	}
 .main-menu ul ul li {display: block;height: auto;padding: 0;}
-.main-menu ul ul li a {@include fontSize(13px);color: $body-text-color;border-bottom:1px solid #ededed;display: block; padding: 12px 15px; @include transition-default (all,0.3s, ease);}
-.main-menu ul ul li:last-child a {border-bottom:none;}
+.main-menu ul ul li a, .main-menu ul ul li button {@include fontSize(13px);color: $body-text-color;border-bottom:1px solid #ededed;display: block; padding: 12px 15px; @include transition-default (all,0.3s, ease);}
+.main-menu ul ul li:last-child a, .main-menu ul ul li:last-child button {border-bottom:none;}
 
 .main-menu ul ul li {
-		&:first-child a {
+    &:first-child a, &:first-child button {
 			&:hover {
 				@include border-radius(3px 3px 0 0);
 			}
 		}
-		&:last-child a {
+    &:last-child a, &:last-child button {
 			border-bottom: none;
 			&:hover {
 				@include border-radius(0 0 3px 3px);
@@ -1515,10 +1517,10 @@ header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.he
 		}
 	}
 
-.main-menu ul ul li:hover > a {background-color:#f9f9f9;color:$color-1; padding-left:18px;}
+.main-menu ul ul li:hover > a, .main-menu ul ul li:hover > button {background-color:#f9f9f9;color:$color-1; padding-left:18px;}
 
 /* Submenu 3rd level */
-.main-menu ul ul li.third-level>a {
+.main-menu ul ul li.third-level>a, .main-menu ul ul li.third-level button {
 	font-weight: normal!important;
 	&:hover {
 		background-color: #f9f9f9;
@@ -1562,28 +1564,32 @@ header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.he
 }
 
 .main-menu ul li a:hover,
+.main-menu ul li button:hover,
 a.show-submenu:hover{color:$color-1 !important;background-color:#f9f9f9; opacity: 1!important;}
 
 .main-menu ul li {border-top: none;border-bottom: 1px solid #ededed;color: #fff;}
 
 /* Menu mobile first level */
-.main-menu ul li a  {padding:15px !important; }
+.main-menu ul li a, .main-menu ul li button  {padding:15px !important; }
 
 .main-menu li,
-.main-menu a {display: block;color:#333 !important;}
+.main-menu a,
+.main-menu button{display: block;color:#333 !important;}
 .main-menu li {position: relative;}
 
 .main-menu ul > li {padding-bottom: 0;}
 .main-menu ul > li i{float:right;}
 
-.main-menu > ul > li.submenu:hover > a {
+.main-menu > ul > li.submenu:hover > a,
+.main-menu > ul > li.submenu:hover > button {
 	&:after {
 		transform: rotate(180deg);
 		color: $color-1;
 	}
 }
 
-.main-menu ul > li.submenu > a:after {
+.main-menu ul > li.submenu > a:after,
+.main-menu ul > li.submenu > button:after{
     font-family: 'ElegantIcons';
     @include fontSize(21px);
     content: "\33";
@@ -1658,7 +1664,7 @@ ul#top_menu {
 		@include tablet {
 			margin: 2px 0 0 10px;
 		}
-		a {
+		a,button {
 			color: #fff;
 			&:hover {
 				color: #fff;

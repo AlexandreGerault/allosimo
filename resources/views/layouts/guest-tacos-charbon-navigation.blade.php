@@ -14,11 +14,10 @@
         <nav class="main-menu" :class="{'show': open, '': ! open }">
             <div id="header_menu">
                 <a href="#0" class="open_close" @click="open = false">
-                    <i class="icon_close"></i>
-                    <span>Menu</span>
+                        <i class="icon_close"></i><span>Menu</span>
                 </a>
                 <a href="{{ route('tacos-charbon.home') }}">
-                    <x-application-logo theme="tacos-charbon" class="h-5" />
+                    <x-application-logo theme="tacos-charbon" class="h-5 mx-auto" />
                 </a>
             </div>
             <ul>
@@ -32,9 +31,9 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <x-button>
+                            <button>
                                 Déconnexion
-                            </x-button>
+                            </button>
                         </form>
                     </li>
                 @endauth

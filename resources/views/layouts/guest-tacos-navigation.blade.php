@@ -14,8 +14,9 @@
         <nav class="main-menu" :class="{'show': open, '': ! open }">
             <div id="header_menu">
                 <a href="#0" class="open_close" @click="open = false">
-                    <i class="icon_close"></i>
-                    <span>Menu</span>
+                    <div class="w-full flex justify-center">
+                        <i class="icon_close"></i><span>Menu</span>
+                    </div>
                 </a>
                 <a href="{{ route('tacos-pizza-only.home') }}">
                     <x-application-logo theme="tacos-pizza-only" class="mx-auto" />
@@ -32,9 +33,9 @@
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <x-button>
+                            <button>
                                 Déconnexion
-                            </x-button>
+                            </button>
                         </form>
                     </li>
                 @endauth
