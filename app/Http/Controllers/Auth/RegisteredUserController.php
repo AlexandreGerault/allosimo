@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -56,11 +57,12 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         $user->assignRole('client');
 
-        if (auth()->user()->hasRole('livreur')) {
-            return redirect()->route('admin.orders.index');
+        if (Str::startsWith(session()->previousUrl(), route('tacos-charbon.home'))) {
+            return redirect()->route('tacos-charbon.home');
         }
-        if (auth()->user()->hasRole('administrateur')) {
-            return redirect()->route('admin.dashboard');
+
+        if(Str::startsWith(session()->previousUrl(), route('tacos-pizza-only.home'))) {
+            return redirect()->route('tacos-pizza-only.home');
         }
 
         return redirect(RouteServiceProvider::HOME);
