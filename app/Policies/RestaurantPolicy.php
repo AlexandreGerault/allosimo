@@ -65,7 +65,7 @@ class RestaurantPolicy
      */
     public function delete(User $user, Restaurant $restaurant)
     {
-        //
+        return $user->hasRole('administrateur');
     }
 
     /**
@@ -77,7 +77,7 @@ class RestaurantPolicy
      */
     public function restore(User $user, Restaurant $restaurant)
     {
-        //
+        return $user->hasRole('administrateur');
     }
 
     /**
@@ -89,6 +89,6 @@ class RestaurantPolicy
      */
     public function forceDelete(User $user, Restaurant $restaurant)
     {
-        //
+        return $user->hasRole('administrateur');
     }
 }
