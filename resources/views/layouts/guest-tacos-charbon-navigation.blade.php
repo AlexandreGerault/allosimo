@@ -1,4 +1,9 @@
-<header class="header clearfix element_to_stick flex" x-data="{ open: false }">
+<header class="header clearfix element_to_stick flex @if(! request()->routeIs('home')
+&& ! request()->routeIs('tacos-pizza-only.home')
+&& ! request()->routeIs('tacos-pizza-only.tacos')
+&& ! request()->routeIs('tacos-charbon.home')
+&& ! request()->routeIs('restaurant.show')
+) sticky_force @endif" x-data="{ open: false }">
     <div class="container flex justify-between items-center">
         <div class="h-10" id="logo">
             <a href="{{ route('tacos-charbon.home') }}" class="block">
