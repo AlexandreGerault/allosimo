@@ -30,4 +30,13 @@ class TacosAndPizzasOnlyController extends Controller
 
         return view('restaurants.show', compact('restaurant', 'categories'));
     }
+
+    public function pizza(): View
+    {
+        /** @var Restaurant $restaurant */
+        $restaurant = Restaurant::query()->where('name', '=', 'Pizza Only')->with(['products.options.category'])->first();
+        $categories = $restaurant->products->groupBy(fn (Product $product) => $product->category->name);
+
+        return view('restaurants.show', compact('restaurant', 'categories'));
+    }
 }
