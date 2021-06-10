@@ -36,22 +36,26 @@
         <script src="{{ asset('js/sticky_sidebar.js') }}" defer></script>
     </head>
     <body>
-    @if(request()->routeIs('tacos-pizza-only.*'))
-        @include('layouts.guest-tacos-navigation')
-    @elseif(request()->is('tacos-charbon.*'))
-        @include('layouts.guest-tacos-charbon-navigation')
-    @else
-        @include('layouts.guest-navigation')
-    @endif
+    <div class="flex flex-col min-h-screen">
+        @if(request()->routeIs('tacos-pizza-only.*'))
+            @include('layouts.guest-tacos-navigation')
+        @elseif(request()->is('tacos-charbon.*'))
+            @include('layouts.guest-tacos-charbon-navigation')
+        @else
+            @include('layouts.guest-navigation')
+        @endif
 
-    {{ $slot }}
+        <div class="flex-grow">
+            {{ $slot }}
+        </div>
 
-    @if(request()->is('tacos-and-pizza-only'))
-        @include('layouts.guest-tacos-footer')
-    @elseif(request()->is('tacos-charbon'))
-        @include('layouts.guest-tacos-footer')
-    @else
-        @include('layouts.guest-tacos-footer')
-    @endif
+        @if(request()->is('tacos-and-pizza-only'))
+            @include('layouts.guest-tacos-footer')
+        @elseif(request()->is('tacos-charbon'))
+            @include('layouts.guest-tacos-footer')
+        @else
+            @include('layouts.guest-tacos-footer')
+        @endif
+    </div>
     </body>
 </html>
