@@ -33,15 +33,14 @@
         <!--/hero_in-->
 
         <div class="container margin_detail">
-            <div class="row">
-                <div class="col-lg-8">
-
+            <div class="flex flex-col-reverse md:flex-row gap-8">
+                <div class="md:w-2/3">
                     <div class="tabs_detail">
                         <div class="tab-content" role="tablist">
                             <div id="pane-A" class="card tab-pane fade show active" role="tabpanel"
                                  aria-labelledby="tab-A">
                                 <div>
-                                    <div class="card-body info_content">
+                                    <div class="info_content">
                                         @foreach($categories as $category => $products)
                                             <h3 class="font-semibold">{{ $category }}</h3>
                                             <div>
@@ -80,7 +79,7 @@
                 </div>
                 <!-- /col -->
 
-                <div class="col-lg-4" id="sidebar_fixed">
+                <div class="flex-grow" id="sidebar_fixed">
                     <x-cart-preview/>
                 </div>
 
