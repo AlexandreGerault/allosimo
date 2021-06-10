@@ -38,7 +38,7 @@ $link = $link ?? route('home');
                                 <p class="text-green-600">{{ $order->price }} DH (hors frais de livraison)</p>
                                 <p class="text-sm text-red-400">(Prix estimé)</p>
 
-                                <x-button-link :href="$link">
+                                <x-button-link :href="$link" class="my-4">
                                     Commander à nouveau
                                 </x-button-link>
                             </div>
