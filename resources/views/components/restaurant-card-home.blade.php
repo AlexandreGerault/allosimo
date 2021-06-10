@@ -1,16 +1,7 @@
 @props(['restaurant'])
 
-@php
-    $link = match ($restaurant->name) {
-    'Tacos Only' => route('tacos-pizza-only.tacos'),
-    'Pizza Only' => route('tacos-pizza-only.pizza'),
-    'Tacos Au Charbon' => route('tacos-charbon.home'),
-    default => route('restaurant.show', $restaurant)
-};
-@endphp
 
-
-<a href="{{ $link }}" class="flex flex-col sm:flex-row p-0">
+<a href="{{ route('restaurant.show', $restaurant) }}" class="flex flex-col sm:flex-row p-0">
     <div class="w-full sm:w-48">
         <img src="{{ Storage::url('public/restaurants/' . $restaurant->image) }}"  alt="" class="block object-cover w-full h-auto sm:h-full">
     </div>
