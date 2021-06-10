@@ -52,7 +52,7 @@
                                                                     src="{{ $product?->image === 'null' ? asset('img/default_product.png') : Storage::url('restaurants/'. $restaurant->name . '/products/' . $product->image) }}"
                                                                     alt="" class="lazy">
                                                             </figure>
-                                                            <div class="flex justify-between">
+                                                            <div class="flex justify-between gap-4">
                                                                 <h4>{{ $product->name }}</h4>
                                                                 <em class="flex gap-1">
                                                                     <span>{{ $product->price }} DH</span>
