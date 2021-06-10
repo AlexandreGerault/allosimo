@@ -54,7 +54,7 @@ class OrderController extends Controller
             return redirect()->route('tacos-pizza-only.order.confirm');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('order.confirm');
     }
 
     /**
