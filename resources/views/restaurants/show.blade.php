@@ -7,8 +7,12 @@
         <div class="hero_in detail_page background-image relative"
              data-background="url(img/restaurant_detail_hero.jpg)">
             <div class="absolute w-full h-full">
+                @if(request()->routeIs('tacos-pizza-only.*'))
+                    <img src="{{ asset('img/tacos-only-cover.png') }}" alt="" class="w-full h-full object-cover"/>
+                    @else
                 <img src="{{ Storage::url('restaurants/' . $restaurant->image) }}" alt=""
                      class="w-full h-full object-cover"/>
+                    @endif
             </div>
             <div class="absolute w-full h-full bg-black opacity-50"></div>
             <div class="wrapper opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
