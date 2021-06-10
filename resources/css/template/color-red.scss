@@ -2,10 +2,10 @@
 @import 'mixin';
 
 /*-------- COLOR RED--------*/
-$color-1: #f0151f;
+$color-1: #944242;
 
 /*General links color*/
-a {	
+a {
 	color: $color-1;
 	&:hover, &:focus {color: #111;text-decoration: none; outline:none;}
 }
@@ -44,13 +44,14 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li{
 
 @media only screen and (max-width: 991px) {
 	#header_menu {
-		background-color: $color-1;
+        background-color: #fff;
+        // background-color: $color-1;
 	}
 }
 
 @media only screen and (max-width: 991px) {
 	.main-menu ul li a:hover,
-	a.show-submenu:hover{color:$color-1 !important;}	
+	a.show-submenu:hover{color:$color-1 !important;}
 
 	.main-menu > ul > li.submenu:hover > a {
 		&:after {
@@ -124,7 +125,7 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li{
 .main_title {
 	span {
 		em {
-			background-color:$color-1; 
+			background-color:$color-1;
 		}
 	}
 }
@@ -183,7 +184,7 @@ a.btn_1,
 }
 
 /* Forms styles */
-.container_check {	
+.container_check {
 	input {
 		&:checked~.checkmark {
 			background-color: $color-1;
@@ -277,7 +278,7 @@ a.show_hide:focus {
           }
         }
       }
-    }   
+    }
   }
 }
 
