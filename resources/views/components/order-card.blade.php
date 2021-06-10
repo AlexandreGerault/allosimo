@@ -8,9 +8,9 @@
                     <p class="text-2xl text-white">{{ $order->user->name }}</p>
                 </a>
 
-                <div class="text-white">
+                <p class="text-white">
                     {{ $order->number ?? "Pas de numéro de commande" }}
-                </div>
+                </p>
             </div>
 
             <x-badge
@@ -23,6 +23,10 @@
             <p class="font-semibold text-lg text-gray-50">Informations client</p>
             <p class="text-sm text-gray-50">{{ $order->user->address }}, {{ $order->user->town }}</p>
             <p class="text-sm text-gray-50">{{ $order->user->phone }}</p>
+
+            <p class="text-sm text-white">
+                {{ $order->created_at->diffForHumans() }} <span class="text-xs">({{ $order->created_at->locale('fr')->translatedFormat('j F Y \à g:i') }})</span>
+            </p>
 
             @if(auth()->user()->hasRole('administrateur'))
                 <div class="my-4">
