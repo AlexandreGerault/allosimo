@@ -38,16 +38,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('tacos-and-pizza-only')->as('tacos-pizza-only.')->group(function () {
-    Route::get('/', [TacosAndPizzasOnlyController::class, 'home'])->name('home');
-    Route::get('/tacos', [TacosAndPizzasOnlyController::class, 'tacos'])->name('tacos');
-    Route::get('/pizza', [TacosAndPizzasOnlyController::class, 'pizza'])->name('pizza');
+    Route::get('/', [TacosAndPizzasOnlyController::class, 'home'])->name('home')->middleware('auth.scope:tacos-pizza-only');
+    Route::get('/tacos', [TacosAndPizzasOnlyController::class, 'tacos'])->name('tacos')->middleware('auth.scope:tacos-pizza-only');;
+    Route::get('/pizza', [TacosAndPizzasOnlyController::class, 'pizza'])->name('pizza')->middleware('auth.scope:tacos-pizza-only');;
 
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest:tacos-pizza-only');
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest:tacos-pizza-only');
 });
 
 Route::prefix('/tacos-charbon')->as('tacos-charbon.')->group(function () {
-    Route::get('/', TacosCharbonController::class)->name('home');
+    Route::get('/', TacosCharbonController::class)->name('home')->middleware('auth.scope:tacos-charbon');
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest:tacos-charbon');
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest:tacos-charbon');
 });
