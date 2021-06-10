@@ -1,8 +1,5 @@
-<header class="header clearfix element_to_stick flex @if(! request()->routeIs('home')
-&& ! request()->routeIs('tacos-pizza-only.home')
-&& ! request()->routeIs('tacos-pizza-only.tacos')
-&& ! request()->routeIs('tacos-charbon.home')
-&& ! request()->routeIs('restaurant.show')
+<header class="header clearfix element_to_stick flex @if(request()->routeIs('*login')
+&& ! request()->routeIs('*register')
 ) sticky_force @endif" x-data="{ open: false }">
     <div class="container flex justify-between items-center">
         <div class="h-10" id="logo">

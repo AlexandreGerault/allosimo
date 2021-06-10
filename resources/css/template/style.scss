@@ -1428,7 +1428,7 @@ header.sticky a.open_close, header.sticky_force a.open_close, .header_in a.open_
     &:hover > a {opacity: 0.8;}
 }
 
-header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li{
+header.sticky .main-menu>ul>li, header.sticky_force .main-menu>ul>li,  header.header_in .main-menu>ul>li{
 		>a, > form > a {
 			color: #444;
 		}
