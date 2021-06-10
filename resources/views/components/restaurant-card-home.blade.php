@@ -7,7 +7,7 @@ if (request()->routeIs('tacos-pizza-only.*')) {
         'Pizza Only' => route('tacos-pizza-only.pizza')
     };
 }
-$link = $link ? $link : route('restaurant.show', $restaurant);
+$link = $link ?? route('restaurant.show', $restaurant);
 @endphp
 
 <a href="{{ $link }}" class="flex flex-col sm:flex-row p-0">
