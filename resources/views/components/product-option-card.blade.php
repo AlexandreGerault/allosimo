@@ -24,7 +24,7 @@
                                                 <input type="checkbox" value="{{ $option->id }}" name="options[]"/>
                                                 <span class="ml-2">{{ $option->name }}</span>
                                             </div>
-                                            <span>{{ $option->price }} DH</span>
+                                            <span>+ {{ $option->price }} DH</span>
                                         </x-label>
                                     @endforeach
                                 </div>
