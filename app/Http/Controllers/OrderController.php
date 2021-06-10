@@ -8,6 +8,7 @@ use App\Models\OrderLine;
 use App\Services\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -31,7 +32,7 @@ class OrderController extends Controller
         //
     }
 
-    public function store(Cart $cart): RedirectResponse
+    public function store(Request $request, Cart $cart): RedirectResponse
     {
         $cart->load();
         $order = auth()->user()->orders()->save(Order::make(['state' => 'confirmed']));
@@ -44,6 +45,14 @@ class OrderController extends Controller
             $orderLine->options()->sync($line->options()->pluck('id'));
         }
         $cart->flush();
+
+        if (Str::startsWith(session()->previousUrl(), route('tacos-charbon.home'))) {
+            return redirect()->route('tacos-charbon.order.confirm');
+        }
+
+        if(Str::startsWith(session()->previousUrl(), route('tacos-pizza-only.home'))) {
+            return redirect()->route('tacos-pizza-only.order.confirm');
+        }
 
         return redirect()->route('home');
     }
