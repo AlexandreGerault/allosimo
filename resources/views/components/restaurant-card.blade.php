@@ -50,7 +50,7 @@
 
             <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST">
                 @csrf
-                @method("PUT")
+                @method("DELETE")
                 <button>
                     <x-heroicon-s-trash class="w-6 h-6 text-white"/>
                 </button>

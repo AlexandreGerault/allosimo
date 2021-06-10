@@ -71,7 +71,7 @@ class RestaurantController extends Controller
         return redirect()->route('admin.restaurant.index');
     }
 
-    public function destroy(Restaurant $restaurant)
+    public function destroy(Restaurant $restaurant): RedirectResponse
     {
         $restaurant->delete();
 
