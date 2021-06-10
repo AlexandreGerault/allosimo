@@ -52,9 +52,9 @@
         @if(request()->is('tacos-and-pizza-only'))
             @include('layouts.guest-tacos-footer')
         @elseif(request()->is('tacos-charbon'))
-            @include('layouts.guest-tacos-footer')
+            @include('layouts.guest-tacos-charbon-footer')
         @else
-            @include('layouts.guest-tacos-footer')
+            @include('layouts.guest-footer')
         @endif
     </div>
     </body>
