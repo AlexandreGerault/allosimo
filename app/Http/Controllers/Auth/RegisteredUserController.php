@@ -56,6 +56,13 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         $user->assignRole('client');
 
+        if (auth()->user()->hasRole('livreur')) {
+            return redirect()->route('admin.orders.index');
+        }
+        if (auth()->user()->hasRole('administrateur')) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return redirect(RouteServiceProvider::HOME);
     }
 }
