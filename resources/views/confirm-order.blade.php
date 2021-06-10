@@ -1,3 +1,13 @@
+@php
+if (request()->routeIs('tacos-charbon.*')) {
+    $link = route('tacos-charbon.home');
+} else if (request()->routeIs('tacos-pizza-only.*')) {
+    $link = route('tacos-pizza-only.home');
+}
+
+$link = $link ?? route('home');
+@endphp
+
 <x-guest-layout>
     <main class="bg_gray pattern">
 
@@ -27,6 +37,10 @@
                                 <h3>Votre commande est en cours de traitement...</h3>
                                 <p class="text-green-600">{{ $order->price }} DH (hors frais de livraison)</p>
                                 <p class="text-sm text-red-400">(Prix estimé)</p>
+
+                                <x-button-link :href="$link">
+                                    Commander à nouveau
+                                </x-button-link>
                             </div>
                         </div>
                     </div>
