@@ -1,8 +1,8 @@
 <header class="header clearfix element_to_stick flex" x-data="{ open: false }">
     <div class="container flex justify-between items-center">
         <div class="h-10" id="logo">
-            <a href="{{ route('tacos-pizza-only.home') }}" class="block">
-                <x-application-logo class="block h-10 w-auto fill-current mx-auto" />
+            <a href="{{ route('tacos-charbon.home') }}" class="block">
+                <x-application-logo class="block h-10 w-auto fill-current mx-auto" theme="tacos-charbon" />
             </a>
         </div>
         <!-- /top_menu -->
@@ -15,13 +15,13 @@
                     <i class="icon_close"></i>
                     <span>Menu</span>
                 </a>
-                <a href="{{ route('tacos-pizza-only.home') }}">
-                    <x-application-logo theme="tacos-pizza-only" class="mx-auto" />
+                <a href="{{ route('tacos-charbon.home') }}">
+                    <x-application-logo theme="tacos-charbon" class="h-5" />
                 </a>
             </div>
             <ul>
                 <li>
-                    <a href="{{ route('tacos-pizza-only.home') }}" class="show-submenu">Accueil</a>
+                    <a href="{{ route('tacos-charbon.home') }}" class="show-submenu">Accueil</a>
                 </li>
                 @auth
                     @if(auth()->user()->hasRole('administrateur'))
@@ -37,8 +37,8 @@
                     </li>
                 @endauth
                 @guest
-                <li><a href="{{ route('tacos-pizza-only.login') }}">Connexion</a></li>
-                <li><a href="{{ route('tacos-pizza-only.register') }}">Inscription</a></li>
+                <li><a href="{{ route('login') }}">Connexion</a></li>
+                <li><a href="{{ route('register') }}">Inscription</a></li>
                 @endguest
             </ul>
         </nav>

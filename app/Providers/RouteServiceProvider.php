@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/dashboard';
+    public const REDIRECT_GUEST_HOME = ['default' => '/dashboard', 'tacos-pizza-only' => '/tacos-and-pizza-only', 'tacos-charbon' => '/tacos-charbon'];
 
     /**
      * The controller namespace for the application.
