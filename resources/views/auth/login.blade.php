@@ -20,7 +20,7 @@ $registerLink = $registerLink ?? route('register');
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </x-slot>
 
-    <div class="container margin_60_40">
+    <div class="container margin_60_40 mt-16">
         <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="sign_up">
