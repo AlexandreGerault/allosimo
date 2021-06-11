@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
 });
 
-Route::get('/confirm', ConfirmOrderController::class)->name('order.confirm')->middleware('auth.scope:tacos-pizza-only');
+Route::get('/confirm', ConfirmOrderController::class)->name('order.confirm')->middleware('auth.scope:tacos-pizza-only')->middleware('redirect-delivery-man');
 
-Route::prefix('tacos-and-pizza-only')->as('tacos-pizza-only.')->group(function () {
+Route::prefix('tacos-and-pizza-only')->middleware('redirect-delivery-man')->as('tacos-pizza-only.')->group(function () {
     Route::get('/', [TacosAndPizzasOnlyController::class, 'home'])->name('home')->middleware('auth.scope:tacos-pizza-only');
 
     Route::get('/confirm', ConfirmOrderController::class)->name('order.confirm')->middleware('auth.scope:tacos-pizza-only');
@@ -51,7 +51,7 @@ Route::prefix('tacos-and-pizza-only')->as('tacos-pizza-only.')->group(function (
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest:tacos-pizza-only');
 });
 
-Route::prefix('/tacos-charbon')->as('tacos-charbon.')->group(function () {
+Route::prefix('/tacos-charbon')->middleware('redirect-delivery-man')->as('tacos-charbon.')->group(function () {
     Route::get('/', TacosCharbonController::class)->name('home')->middleware('auth.scope:tacos-charbon');
 
     Route::get('/confirm', ConfirmOrderController::class)->name('order.confirm')->middleware('auth.scope:tacos-pizza-only');
@@ -78,6 +78,6 @@ Route::prefix('admin')
     }
 );
 
-Route::resource('restaurant', \App\Http\Controllers\RestaurantController::class)->only('show');
+Route::resource('restaurant', \App\Http\Controllers\RestaurantController::class)->only('show')->middleware('redirect-delivery-man');
 
 require __DIR__ . '/auth.php';
