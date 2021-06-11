@@ -45,7 +45,6 @@ $registerLink = $registerLink ?? route('register');
                                        required autocomplete="current-password" />
                                 <i class="icon_lock"></i>
                             </div>
-                            <a href="{{ route('password.request') }}" class="block mb-2">Mot de passe oublié</a>
                             <button class="btn_1 full-width mb_5">Se connecter</button>
                         </form>
                         <div class="divider"><span>Ou</span></div>
