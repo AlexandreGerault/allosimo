@@ -16,7 +16,9 @@ class Order extends Model
 
     const STATES = ['confirmed', 'cancelled'];
 
-    protected $fillable = ['state'];
+    protected $fillable = ['state', 'seen_at'];
+
+    protected $dates = ['seen_at'];
 
     protected static function boot()
     {

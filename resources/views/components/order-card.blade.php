@@ -32,6 +32,15 @@
                 <div class="my-4">
                     <p class="font-semibold text-lg text-gray-50">Livreur</p>
                     @if($order?->deliveryGuy)
+                        @if($order->seen_at)
+                            <p class="text-white font-semibold">
+                                Vu par le livreur à {{ $order->seen_at->setTimezone('Africa/Casablanca')->locale('fr')->translatedFormat('j F Y \à g:i') }}
+                            </p>
+                        @else
+                            <p class="text-white font-semibold">
+                                Commande pas encore vue par le livreur
+                            </p>
+                        @endif
                         <p class="text-sm text-gray-50">{{ $order->deliveryGuy->name }}</p>
                         <p class="text-sm text-gray-50">{{ $order->deliveryGuy->phone }}</p>
                     @else

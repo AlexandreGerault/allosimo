@@ -30,4 +30,14 @@ class OrderModelTest extends TestCase
 
         $this->assertNotNull($order->number);
     }
+
+    public function test_an_order_has_a_null_seen_at()
+    {
+        $order = Order::factory()
+                      ->for(User::factory())
+                      ->has(OrderLine::factory()->for(Product::factory())->count(3), 'lines')
+                      ->create();
+
+        $this->assertNull($order->seen_at);
+    }
 }
