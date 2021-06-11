@@ -29,7 +29,6 @@ class OrderController extends Controller
 
         $orders = $query->latest()->paginate(60);
         if(auth()->user()->hasRole('livreur') && ! auth()->user()->hasRole('administrateur')) {
-            dd("You are a delivery man, we update seen at");
             array_map(fn(Order $order) => $order->update(['seen_at' => now()]), $orders->items());
         }
 
