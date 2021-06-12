@@ -31,11 +31,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'redirect-delivery-man'])->group(function () {
     Route::get('/', HomeController::class)->name('home');
     Route::post("/cart/add/{product}", [CartController::class, 'add'])->name('cart.add');
     Route::post("/cart/remove", [CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/order', [OrderController::class, 'store'])->middleware('auth')->name('order');
+    Route::post('/order', [OrderController::class, 'store'])->name('order');
 });
 
 Route::get('/confirm', ConfirmOrderController::class)->name('order.confirm')->middleware('auth.scope:tacos-pizza-only')->middleware('redirect-delivery-man');

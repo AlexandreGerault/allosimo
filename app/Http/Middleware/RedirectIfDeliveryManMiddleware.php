@@ -17,7 +17,7 @@ class RedirectIfDeliveryManMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->hasRole('livreur')) {
-            return redirect()->route('admin.orders.show');
+            return redirect()->route('admin.orders.index');
         }
 
         return $next($request);
